@@ -6,6 +6,7 @@
     "start": "ng serve",
     "build": "ng build",
     "build:prod": "ng build --prod",
+    "update": "ng update --all --force",
     "test": "jest",
     "lint": "ng lint",
     "e2e": "ng e2e"
