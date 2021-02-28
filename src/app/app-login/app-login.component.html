@@ -1,0 +1,12 @@
+<div class="app-login common-center">
+    <h1 class="sign-in">Sign In</h1>
+    <div>
+        <h3>User Name</h3>
+        <input type="text" pInputText [(ngModel)]="username" (keypress)="keyPress($event)">
+    </div>
+    <div>
+        <h3 class="first">Password</h3>
+        <input type="password" pPassword [(ngModel)]="password" (keypress)="keyPress($event)" [feedback]=false />
+    </div>
+    <button pButton label="Submit" [disabled]="!canSubmit" (click)="submit()" class="submit"></button>
+</div>

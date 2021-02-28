@@ -1,0 +1,106 @@
+<div class="app-files">
+    <div class="content-toolbar">
+        <p-toolbar>
+            <div class="ui-toolbar-group-left">
+                <ng-container *ngIf="viewMode">
+                    <button pButton *userPermission icon="pi pi-upload" label="Upload"
+                        (click)="toolbarState='upload'"></button>
+                    <button pButton *userPermission icon="fas fa-folder-plus" label="Create Folder"
+                        (click)="toolbarState='newFolder'"></button>
+                </ng-container>
+            </div>
+
+            <div class="ui-toolbar-group-right">
+                <p-toggleButton *dataAdminPermission onIcon="pi pi-pencil" onLabel="" offIcon="pi pi-ban" offLabel=""
+                    [(ngModel)]="viewMode" (onChange)="toolbarState=null"></p-toggleButton>
+            </div>
+        </p-toolbar>
+        <p-fieldset *ngIf="toolbarState==='upload' && viewMode" legend="Upload">
+            <p-fileUpload #fileUpload [files]="uploadFileList" customUpload="true" [showUploadButton]=false
+                (uploadHandler)="uploadFiles($event)" multiple="multiple">
+                <ng-template pTemplate="toolbar">
+                    <div>
+                        <div>
+                            <p-checkbox label="Is Public" binary="true" [(ngModel)]="isPublic"></p-checkbox>
+                        </div>
+                        <button pButton class="ui-button-success" [disabled]="fileUpload.files.length===0"
+                            icon="pi pi-upload" label="Upload" (click)="fileUpload.upload($event)"></button>
+                    </div>
+                </ng-template>
+            </p-fileUpload>
+        </p-fieldset>
+        <p-fieldset *ngIf="toolbarState==='newFolder' && viewMode" legend="Create Folder">
+            <div>
+                Name:
+                <input #newFolderName type="text" pInputText />
+            </div>
+            <div>
+                <p-checkbox label="Is Public" binary="true" [(ngModel)]="isPublic"></p-checkbox>
+            </div>
+            <button pButton class="ui-button-success" icon="fas fa-folder-plus" label="Create"
+                (click)="createFolder(newFolderName.value)"></button>
+        </p-fieldset>
+    </div>
+
+    <div class="content-view">
+        <p-dataView #dataView [value]="fileList">
+            <p-header>
+                <div class="ui-g">
+                    <div class="ui-g-9">
+                        <a href="javascript:void(0);" (click)="pathClick(null)">files</a>
+                        <ng-container *ngFor="let path of pathList">
+                            <span>></span>
+                            <a href="javascript:void(0);" (click)="pathClick(path)">{{path.fileName}}</a>
+                        </ng-container>
+                    </div>
+                    <div class="ui-g-3">
+                        <div class="f-r">
+                            <p-dataViewLayoutOptions></p-dataViewLayoutOptions>
+                        </div>
+                    </div>
+                </div>
+                <div *ngIf="dataView.layout==='list'" class="ui-g">
+                    <div class="ui-g-5">Name</div>
+                    <div class="ui-g-3">Owner</div>
+                    <div class="ui-g-3">Created</div>
+                    <div class="ui-g-1">Public</div>
+                </div>
+            </p-header>
+
+            <ng-template let-file pTemplate="listItem">
+                <div class="ui-g">
+                    <div class="ui-g-5">
+                        <span>
+                            <i [ngClass]="{'fas fa-folder': file.isFolder,'far fa-file-alt': !file.isFolder}"></i>
+                            <a href="javascript:void(0);" (click)="fileClick(file)"> {{file.fileName}}</a>
+                        </span>
+                    </div>
+                    <div class="ui-g-3">{{file.owner}}</div>
+                    <div class="ui-g-3">{{file.date | date:'MM/dd/y HH:mm:ss'}}</div>
+                    <div class="ui-g-1">{{file.isPublic}}</div>
+                </div>
+            </ng-template>
+            <ng-template let-file pTemplate="gridItem">
+                <div class="ui-g-12 ui-md-3 ui-sm-6 grid-item">
+                    <div class="grid-item-icon">
+                        <span>
+                            <i [ngClass]="{'fas fa-folder': file.isFolder,'far fa-file-alt': !file.isFolder}"></i>
+                        </span>
+                        <div class="grid-item-state">
+                            <i *ngIf="file.owner===userName" title="owner" class="grid-item-owner pi pi-user"></i>
+                            <i *ngIf="!file.isPublic" title="private" class="grid-item-private pi pi-key"></i>
+                        </div>
+                    </div>
+                    <a href="javascript:void(0);" (click)="fileClick(file)">{{file.fileName}}</a>
+                </div>
+            </ng-template>
+        </p-dataView>
+    </div>
+    <p-confirmDialog #cd header="Confirmation" icon="pi pi-exclamation-triangle">
+        <p-footer>
+            <button type="button" pButton class="ui-button-success" icon="pi pi-check" label="Yes"
+                (click)="cd.accept()"></button>
+            <button type="button" pButton icon="pi pi-times" label="No" (click)="cd.reject()"></button>
+        </p-footer>
+    </p-confirmDialog>
+</div>

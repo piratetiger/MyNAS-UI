@@ -1,0 +1,44 @@
+.lightbox {
+  .lightbox-item {
+    height: 155px;
+    width: 130px;
+    padding: 2px;
+    display: inline-block;
+    cursor: pointer;
+    position: relative;
+
+    .lightbox-image {
+      height: 100%;
+      width: 100%;
+    }
+
+    .lightbox-state {
+      position: absolute;
+      bottom: 2px;
+      right: 2px;
+      font-size: 18px;
+      text-shadow: 2px 2px #666;
+    }
+
+    .lightbox-image-state {
+      position: absolute;
+      top: 2px;
+      right: 2px;
+      font-size: 24px;
+    }
+
+    .lightbox-image-private {
+      color: #c79218;
+    }
+
+    .lightbox-image-owner {
+      color: #50a6d8;
+    }
+  }
+}
+
+.lightbox-detail {
+  .ui-dialog-content {
+    text-align: center;
+  }
+}

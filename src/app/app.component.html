@@ -1,0 +1,5 @@
+<app-header *ngIf="showHeader"></app-header>
+<app-footer *ngIf="showFooter"></app-footer>
+<router-outlet #content></router-outlet>
+<p-toast position="bottom-right"></p-toast>
+<busy-indicator [isBusy]="isBusy"></busy-indicator>

@@ -1,0 +1,21 @@
+<div class="app-add-user common-center">
+    <!-- <h2 class="header">New User</h2> -->
+    <div>
+        <h3>User Name</h3>
+        <input type="text" pInputText [(ngModel)]="user.userName">
+    </div>
+    <div>
+        <h3>Nick Name</h3>
+        <input type="text" pInputText [(ngModel)]="user.nickName">
+    </div>
+    <div>
+        <h3 class="first">Password</h3>
+        <input type="password" pPassword [(ngModel)]="user.password" [feedback]=false />
+    </div>
+    <div>
+        <h3 class="first">Role</h3>
+        <user-role-dropdown [(ngModel)]="user.role"></user-role-dropdown>
+    </div>
+    <button pButton label="Submit" [disabled]="!user.userName||!user.password||user.role==null" (click)="submit()"
+        class="submit"></button>
+</div>

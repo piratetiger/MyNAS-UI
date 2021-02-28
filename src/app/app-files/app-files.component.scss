@@ -1,0 +1,32 @@
+.app-files {
+  .content-view {
+    margin-top: 5px;
+
+    .grid-item {
+      text-align: center;
+
+      .grid-item-icon {
+        font-size: 70px;
+        position: relative;
+        width: 105px;
+        margin: auto;
+
+        .grid-item-state {
+          position: absolute;
+          bottom: 2px;
+          right: 2px;
+          font-size: 18px;
+          text-shadow: 2px 2px #666;
+        }
+
+        .grid-item-private {
+          color: #c79218;
+        }
+
+        .grid-item-owner {
+          color: #50a6d8;
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,16 @@
+<div class="lightbox">
+    <div class="lightbox-item" *ngFor="let source of sources" (click)="itemClick(source)">
+        <div pDefer>
+            <ng-template>
+                <img class="lightbox-image" [src]="getImageUrl(source.fileSource)" />
+                <div *ngIf="editMode" class="lightbox-image-state">
+                    <i [style.color]="source.selected?'green':'gray'" class="pi pi-check-circle"></i>
+                </div>
+                <div class="lightbox-state">
+                    <i *ngIf="source.isOwner" title="owner" class="lightbox-image-owner pi pi-user"></i>
+                    <i *ngIf="!source.isPublic" title="private" class="lightbox-image-private pi pi-key"></i>
+                </div>
+            </ng-template>
+        </div>
+    </div>
+</div>

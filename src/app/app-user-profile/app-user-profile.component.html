@@ -1,0 +1,28 @@
+<div class="app-user-profile common-center">
+    <!-- <h2 class="header">New User</h2> -->
+    <div>
+        <h3>User Name</h3>
+        <input type="text" pInputText [disabled]=true [(ngModel)]="user.userName">
+    </div>
+    <div>
+        <h3>Nick Name</h3>
+        <input type="text" pInputText [(ngModel)]="user.nickName">
+    </div>
+    <div>
+        <h3 class="first">Old Password</h3>
+        <input type="password" pPassword [(ngModel)]="oldPassword" [feedback]=false />
+    </div>
+    <div>
+        <h3 class="first">New Password</h3>
+        <input type="password" pPassword [(ngModel)]="newPassword" />
+    </div>
+    <div>
+        <h3 class="first">Confirm Password</h3>
+        <input type="password" pPassword [(ngModel)]="confirmPassword" [feedback]=false />
+    </div>
+    <div>
+        <h3 class="first">Role</h3>
+        <input type="text" pInputText [disabled]=true [ngModel]="user.role | userRole">
+    </div>
+    <button pButton label="Submit" [disabled]="!canSubmit" (click)="submit()" class="submit"></button>
+</div>
