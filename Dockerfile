@@ -1,6 +1,7 @@
 FROM node:12 AS build
 COPY . .
 
+RUN ls
 RUN npm install && \
     npm run build:prod
 
