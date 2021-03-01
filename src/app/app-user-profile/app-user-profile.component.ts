@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { DynamicDialogRef } from 'primeng/api';
+import { DynamicDialogRef } from 'primeng/dynamicdialog';
 import { UserModel } from '../infrastructure/models/user-model';
 import { AppService } from '../infrastructure/services/app.service/app.service';
 import { ApiService } from '../infrastructure/services/api.service/api.service';

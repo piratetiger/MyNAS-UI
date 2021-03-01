@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { UserModel } from '../../infrastructure/models/user-model';
 import { AdminApiService } from '../../infrastructure/services/admin-api.service/admin-api.service';
-import { DialogService, ConfirmationService } from 'primeng/api';
+import { DialogService } from 'primeng/dynamicdialog';
+import { ConfirmationService } from 'primeng/api';
 import { AdminAddUserComponent } from './admin-add-user/admin-add-user.component';
 
 @Component({

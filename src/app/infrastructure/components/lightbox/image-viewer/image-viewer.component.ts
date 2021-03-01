@@ -1,6 +1,6 @@
 import { Component, ViewEncapsulation, Input, OnInit } from '@angular/core';
 import { ApiService } from 'src/app/infrastructure/services/api.service/api.service';
-import { DynamicDialogConfig } from 'primeng/api';
+import { DynamicDialogConfig } from 'primeng/dynamicdialog';
 
 @Component({
     selector: 'image-viewer',

@@ -1,6 +1,6 @@
 import { Component, ViewEncapsulation, Input, OnInit, AfterViewInit, ElementRef } from '@angular/core';
 import { ApiService } from 'src/app/infrastructure/services/api.service/api.service';
-import { DynamicDialogConfig } from 'primeng/api';
+import { DynamicDialogConfig } from 'primeng/dynamicdialog';
 declare var videojs: any;
 
 @Component({

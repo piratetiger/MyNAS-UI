@@ -1,6 +1,6 @@
 import { Component, ViewEncapsulation, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { ApiService } from '../../services/api.service/api.service';
-import { DialogService } from 'primeng/api';
+import { DialogService } from 'primeng/dynamicdialog';
 import { ImageViewerComponent } from './image-viewer/image-viewer.component';
 import { VideoViewerComponent } from './video-viewer/video-viewer.component';
 import { LightboxItemModel } from './models/lightbox-item-model';
