@@ -5,5 +5,7 @@ RUN npm install && \
     npm run build:prod
 
 FROM nginx:1.19.7
-COPY --from=build /ui/dist/UI /usr/share/nginx/html
-#COPY nginx.conf /etc/nginx/nginx.conf
+COPY ./nginx.conf /etc/nginx/conf.d/mynas-ui.conf
+COPY --from=build /ui/dist/UI /html
+
+EXPOSE 5001
