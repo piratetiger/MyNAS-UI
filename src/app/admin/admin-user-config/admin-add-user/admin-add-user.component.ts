@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { AdminApiService } from '../../../infrastructure/services/admin-api.service/admin-api.service';
 import { UserModel } from '../../../infrastructure/models/user-model';
 import { UserRole } from '../../../infrastructure/models/user-role';
-import { DynamicDialogRef } from 'primeng/api';
+import { DynamicDialogRef } from 'primeng/dynamicdialog';
 
 @Component({
     selector: 'admin-add-user',

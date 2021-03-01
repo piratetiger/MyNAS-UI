@@ -28,7 +28,7 @@ import { DeferModule } from 'primeng/defer';
 import { LightboxComponent } from './lightbox/lightbox.component';
 import { BusyIndicatorComponent } from './busy-indicator/busy-indicator.component';
 import { ImageViewerComponent } from './lightbox/image-viewer/image-viewer.component';
-import { DynamicDialogConfig, DynamicDialogRef, DialogService } from 'primeng/api';
+import { DynamicDialogConfig, DynamicDialogRef, DialogService } from 'primeng/dynamicdialog';
 import { UserRoleDropdownComponent } from './user-role-dropdown/user-role-dropdown.component';
 import { VideoViewerComponent } from './lightbox/video-viewer/video-viewer.component';
 
