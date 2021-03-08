@@ -2,6 +2,7 @@ import { Component, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
 import { ApiService } from '../infrastructure/services/api.service/api.service';
 import { AppService } from '../infrastructure/services/app.service/app.service';
+import { head } from 'lodash';
 
 @Component({
     selector: 'app-login',
@@ -36,8 +37,9 @@ export class AppLoginComponent implements OnDestroy {
                 username: this.username,
                 password: this.password
             }).subscribe(d => {
-                if (d.data) {
-                    this.appService.userInfo = d.data;
+                var user = head(d.data);
+                if (user) {
+                    this.appService.userInfo = user;
                     this.router.navigateByUrl('/');
                 } else {
                     this.password = '';
