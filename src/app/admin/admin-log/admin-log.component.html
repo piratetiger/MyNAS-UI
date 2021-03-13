@@ -5,7 +5,7 @@
                 <p-calendar [(ngModel)]="startDate" [maxDate]="endDate" dateFormat="M-dd-yy"></p-calendar>
                 <p-calendar [(ngModel)]="endDate" [minDate]="startDate" dateFormat="M-dd-yy"></p-calendar>
                 <p-dropdown [options]="logTypes" [(ngModel)]="logType"></p-dropdown>
-                <button pButton class="ui-button-success" icon="pi pi-search" label="Search"
+                <button pButton class="p-button-success" icon="pi pi-search" label="Search"
                     (click)="refreshLogs()"></button>
             </div>
         </p-toolbar>

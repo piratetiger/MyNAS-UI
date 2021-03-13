@@ -10,7 +10,7 @@
                 <ng-container *ngIf="!viewMode">
                     <button pButton *dataAdminPermission [disabled]="selectedItems.length===0" icon="pi pi-calendar"
                         label="Change Date" (click)="toolbarState='changeDate'"></button>
-                    <button pButton *dataAdminPermission class="ui-button-danger" [disabled]="selectedItems.length===0"
+                    <button pButton *dataAdminPermission class="p-button-danger" [disabled]="selectedItems.length===0"
                         icon="pi pi-trash" label="Delete" (click)="deleteFiles()"></button>
                 </ng-container>
             </div>
@@ -27,7 +27,7 @@
                     <div>
                         <div>Videos Date: <p-calendar [(ngModel)]="videosDate" dateFormat="M-dd-yy"></p-calendar></div>
                         <div><p-checkbox label="Is Public" binary="true" [(ngModel)]="isPublic"></p-checkbox></div>
-                        <button pButton class="ui-button-success" [disabled]="fileUpload.files.length===0"
+                        <button pButton class="p-button-success" [disabled]="fileUpload.files.length===0"
                             icon="pi pi-upload" label="Upload" (click)="fileUpload.upload($event)"></button>
                     </div>
                 </ng-template>
@@ -40,12 +40,12 @@
                 Owner:
                 <p-multiSelect [options]="owners" [(ngModel)]="selectedOwners"></p-multiSelect>
             </div>
-            <button pButton class="ui-button-success" icon="pi pi-search" icon="pi pi-search" label="Search"
+            <button pButton class="p-button-success" icon="pi pi-search" icon="pi pi-search" label="Search"
                 (click)="refreshVideos()"></button>
         </p-fieldset>
         <p-fieldset *ngIf="toolbarState==='changeDate' && !viewMode" legend="Change Date">
             <p-calendar [(ngModel)]="newDate" dateFormat="M-dd-yy"></p-calendar>
-            <button pButton class="ui-button-success" icon="pi pi-check" label="Update" (click)="updateDate()"></button>
+            <button pButton class="p-button-success" icon="pi pi-check" label="Update" (click)="updateDate()"></button>
         </p-fieldset>
     </div>
 
@@ -60,7 +60,7 @@
     </div>
     <p-confirmDialog #cd header="Confirmation" icon="pi pi-exclamation-triangle">
         <p-footer>
-            <button type="button" pButton class="ui-button-success" icon="pi pi-check" label="Yes"
+            <button type="button" pButton class="p-button-success" icon="pi pi-check" label="Yes"
                 (click)="cd.accept()"></button>
             <button type="button" pButton icon="pi pi-times" label="No" (click)="cd.reject()"></button>
         </p-footer>
