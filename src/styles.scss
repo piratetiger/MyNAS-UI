@@ -1,8 +1,25 @@
 @import "./variable.scss";
 
+html {
+  font-size: 14px;
+}
+
 body {
   margin: 0;
   margin-bottom: $footer-height;
+
+  a {
+    color: #007ad9;
+    text-decoration: none
+  }
+
+  a:hover {
+    color: #116fbf
+  }
+
+  a:active {
+    color: #005b9f
+  }
 }
 
 .p-r {
@@ -58,6 +75,17 @@ p-calendar input {
 .p-multiselect {
   div.p-multiselect-panel {
     min-width: 220px;
+  }
+}
+
+p-fieldset fieldset {
+  legend {
+    background: none !important;
+    border: none !important;
+  }
+
+  .p-fieldset-content {
+    padding: 0 !important;
   }
 }
 
