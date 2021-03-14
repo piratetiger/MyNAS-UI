@@ -11,7 +11,7 @@
             </div>
 
             <div class="p-toolbar-group-right">
-                <p-toggleButton *dataAdminPermission onIcon="fas fa-pencil-alt" onLabel="" offIcon="pi pi-ban" offLabel=""
+                <p-toggleButton *dataAdminPermission onIcon="fas fa-pencil-alt" onLabel="" offIcon="fas fa-ban" offLabel=""
                     [(ngModel)]="viewMode" (onChange)="toolbarState=null"></p-toggleButton>
             </div>
         </p-toolbar>
@@ -86,7 +86,7 @@
                         </span>
                         <div class="grid-item-state">
                             <i *ngIf="file.owner===userName" title="owner" class="grid-item-owner fas fa-user"></i>
-                            <i *ngIf="!file.isPublic" title="private" class="grid-item-private pi pi-key"></i>
+                            <i *ngIf="!file.isPublic" title="private" class="grid-item-private fas fa-key"></i>
                         </div>
                     </div>
                     <a href="javascript:void(0);" (click)="fileClick(file)">{{file.fileName}}</a>
