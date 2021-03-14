@@ -78,6 +78,10 @@ p-calendar input {
   }
 }
 
+.p-dataview.p-dataview-list .p-dataview-content>.p-grid>div {
+  padding: 0.5rem 0.75rem;
+}
+
 p-fieldset fieldset {
   legend {
     background: none !important;
