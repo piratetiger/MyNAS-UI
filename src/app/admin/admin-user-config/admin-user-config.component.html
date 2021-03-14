@@ -56,13 +56,13 @@
                         (click)="rowDelete(user, ri)"></button>
                     <button *ngIf="editing" pButton type="button" pSaveEditableRow icon="fas fa-check"
                         class="p-button-success" style="margin-right: .5em" (click)="rowEditSave(user)"></button>
-                    <button *ngIf="editing" pButton type="button" pCancelEditableRow icon="pi pi-undo"
+                    <button *ngIf="editing" pButton type="button" pCancelEditableRow icon="fas fa-undo-alt"
                         class="p-button-danger" (click)="rowEditCancel(user, ri)"></button>
                 </td>
             </tr>
         </ng-template>
     </p-table>
-    <p-confirmDialog #cd header="Confirmation" icon="pi pi-exclamation-triangle">
+    <p-confirmDialog #cd header="Confirmation" icon="fas fa-exclamation-triangle">
         <p-footer>
             <button type="button" pButton class="p-button-success" icon="fas fa-check" label="Yes"
                 (click)="cd.accept()"></button>
