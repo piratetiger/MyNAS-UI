@@ -2,7 +2,7 @@
     <div class="content-toolbar">
         <p-toolbar>
             <div class="p-toolbar-group-left">
-                <button pButton icon="fa fa-user-plus" label="New User" (click)="newUser()"></button>
+                <button pButton icon="fas fa-user-plus" label="New User" (click)="newUser()"></button>
             </div>
         </p-toolbar>
     </div>
@@ -50,7 +50,7 @@
                     </p-cellEditor>
                 </td>
                 <td style="text-align:center">
-                    <button *ngIf="!editing" pButton type="button" pInitEditableRow icon="pi pi-pencil"
+                    <button *ngIf="!editing" pButton type="button" pInitEditableRow icon="fas fa-pencil-alt"
                         class="p-button-info" style="margin-right: .5em" (click)="rowEditInit(user)"></button>
                     <button *ngIf="!editing" pButton type="button" icon="pi pi-times" class="p-button-danger"
                         (click)="rowDelete(user, ri)"></button>

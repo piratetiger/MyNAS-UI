@@ -5,7 +5,7 @@
                 <ng-container *ngIf="viewMode">
                     <button pButton *userPermission icon="pi pi-upload" label="Upload"
                         (click)="toolbarState='upload'"></button>
-                    <button pButton icon="fa fa-search" label="Search" (click)="toolbarState='search'"></button>
+                    <button pButton icon="fas fa-search" label="Search" (click)="toolbarState='search'"></button>
                 </ng-container>
                 <ng-container *ngIf="!viewMode">
                     <button pButton *dataAdminPermission [disabled]="selectedItems.length===0" icon="pi pi-calendar"
@@ -16,7 +16,7 @@
             </div>
 
             <div class="p-toolbar-group-right">
-                <p-toggleButton *dataAdminPermission onIcon="pi pi-pencil" onLabel="" offIcon="pi pi-ban" offLabel=""
+                <p-toggleButton *dataAdminPermission onIcon="fas fa-pencil-alt" onLabel="" offIcon="pi pi-ban" offLabel=""
                     [(ngModel)]="viewMode" (onChange)="toolbarState=null"></p-toggleButton>
             </div>
         </p-toolbar>
@@ -40,7 +40,7 @@
                 Owner:
                 <p-multiSelect [options]="owners" [(ngModel)]="selectedOwners"></p-multiSelect>
             </div>
-            <button pButton class="p-button-success" icon="fa fa-search" label="Search"
+            <button pButton class="p-button-success" icon="fas fa-search" label="Search"
                 (click)="refreshVideos()"></button>
         </p-fieldset>
         <p-fieldset *ngIf="toolbarState==='changeDate' && !viewMode" legend="Change Date">
