@@ -1,8 +1,25 @@
 @import "./variable.scss";
 
+html {
+  font-size: 14px;
+}
+
 body {
   margin: 0;
   margin-bottom: $footer-height;
+
+  a {
+    color: #007ad9;
+    text-decoration: none
+  }
+
+  a:hover {
+    color: #116fbf
+  }
+
+  a:active {
+    color: #005b9f
+  }
 }
 
 .p-r {
@@ -39,7 +56,7 @@ body {
 }
 
 //primeng
-.ui-dialog-content {
+.p-dialog-content {
   height: 100%;
 }
 
@@ -55,9 +72,24 @@ p-calendar input {
   }
 }
 
-.ui-multiselect {
-  div.ui-multiselect-panel {
+.p-multiselect {
+  div.p-multiselect-panel {
     min-width: 220px;
+  }
+}
+
+.p-dataview.p-dataview-list .p-dataview-content>.p-grid>div {
+  padding: 0.5rem 0.75rem;
+}
+
+p-fieldset fieldset {
+  legend {
+    background: none !important;
+    border: none !important;
+  }
+
+  .p-fieldset-content {
+    padding: 0 !important;
   }
 }
 

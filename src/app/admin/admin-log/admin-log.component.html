@@ -1,11 +1,11 @@
 <div class="admin-log">
     <div class="content-toolbar">
         <p-toolbar>
-            <div class="ui-toolbar-group-left">
+            <div class="p-toolbar-group-left">
                 <p-calendar [(ngModel)]="startDate" [maxDate]="endDate" dateFormat="M-dd-yy"></p-calendar>
                 <p-calendar [(ngModel)]="endDate" [minDate]="startDate" dateFormat="M-dd-yy"></p-calendar>
                 <p-dropdown [options]="logTypes" [(ngModel)]="logType"></p-dropdown>
-                <button pButton class="ui-button-success" icon="pi pi-search" label="Search"
+                <button pButton class="p-button-success" icon="fas fa-search" label="Search"
                     (click)="refreshLogs()"></button>
             </div>
         </p-toolbar>

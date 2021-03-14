@@ -16,8 +16,12 @@
       position: absolute;
       bottom: 2px;
       right: 2px;
-      font-size: 18px;
+      font-size: 16px;
       text-shadow: 2px 2px #666;
+
+      i {
+        padding-right: 2px;
+      }
     }
 
     .lightbox-image-state {
@@ -38,7 +42,7 @@
 }
 
 .lightbox-detail {
-  .ui-dialog-content {
+  .p-dialog-content {
     text-align: center;
   }
 }

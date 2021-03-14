@@ -1,22 +1,22 @@
 <div class="app-images">
     <div class="content-toolbar">
         <p-toolbar>
-            <div class="ui-toolbar-group-left">
+            <div class="p-toolbar-group-left">
                 <ng-container *ngIf="viewMode">
-                    <button pButton *userPermission icon="pi pi-upload" label="Upload"
+                    <button pButton *userPermission icon="fas fa-upload" label="Upload"
                         (click)="toolbarState='upload'"></button>
-                    <button pButton icon="pi pi-search" label="Search" (click)="toolbarState='search'"></button>
+                    <button pButton icon="fas fa-search" label="Search" (click)="toolbarState='search'"></button>
                 </ng-container>
                 <ng-container *ngIf="!viewMode">
-                    <button pButton *dataAdminPermission [disabled]="selectedItems.length===0" icon="pi pi-calendar"
+                    <button pButton *dataAdminPermission [disabled]="selectedItems.length===0" icon="far fa-calendar-alt"
                         label="Change Date" (click)="toolbarState='changeDate'"></button>
-                    <button pButton *dataAdminPermission class="ui-button-danger" [disabled]="selectedItems.length===0"
-                        icon="pi pi-trash" label="Delete" (click)="deleteFiles()"></button>
+                    <button pButton *dataAdminPermission class="p-button-danger" [disabled]="selectedItems.length===0"
+                        icon="fas fa-trash-alt" label="Delete" (click)="deleteFiles()"></button>
                 </ng-container>
             </div>
 
-            <div class="ui-toolbar-group-right">
-                <p-toggleButton *dataAdminPermission onIcon="pi pi-pencil" onLabel="" offIcon="pi pi-ban" offLabel=""
+            <div class="p-toolbar-group-right">
+                <p-toggleButton *dataAdminPermission onIcon="fas fa-pencil-alt" onLabel="" offIcon="fas fa-ban" offLabel=""
                     [(ngModel)]="viewMode" (onChange)="toolbarState=null"></p-toggleButton>
             </div>
         </p-toolbar>
@@ -27,8 +27,8 @@
                     <div>
                         <div>Images Date: <p-calendar [(ngModel)]="imagesDate" dateFormat="M-dd-yy"></p-calendar></div>
                         <div><p-checkbox label="Is Public" binary="true" [(ngModel)]="isPublic"></p-checkbox></div>
-                        <button pButton class="ui-button-success" [disabled]="fileUpload.files.length===0"
-                            icon="pi pi-upload" label="Upload" (click)="fileUpload.upload($event)"></button>
+                        <button pButton class="p-button-success" [disabled]="fileUpload.files.length===0"
+                            icon="fas fa-upload" label="Upload" (click)="fileUpload.upload($event)"></button>
                     </div>
                 </ng-template>
             </p-fileUpload>
@@ -40,12 +40,12 @@
                 Owner:
                 <p-multiSelect [options]="owners" [(ngModel)]="selectedOwners"></p-multiSelect>
             </div>
-            <button pButton class="ui-button-success" icon="pi pi-search" label="Search"
+            <button pButton class="p-button-success" icon="fas fa-search" label="Search"
                 (click)="refreshImages()"></button>
         </p-fieldset>
         <p-fieldset *ngIf="toolbarState==='changeDate' && !viewMode" legend="Change Date">
             <p-calendar [(ngModel)]="newDate" dateFormat="M-dd-yy"></p-calendar>
-            <button pButton class="ui-button-success" icon="pi pi-check" label="Update" (click)="updateDate()"></button>
+            <button pButton class="p-button-success" icon="fas fa-check" label="Update" (click)="updateDate()"></button>
         </p-fieldset>
     </div>
 
@@ -58,11 +58,11 @@
             </ng-container>
         </p-accordion>
     </div>
-    <p-confirmDialog #cd header="Confirmation" icon="pi pi-exclamation-triangle">
+    <p-confirmDialog #cd header="Confirmation" icon="fas fa-exclamation-triangle">
         <p-footer>
-            <button type="button" pButton class="ui-button-success" icon="pi pi-check" label="Yes"
+            <button type="button" pButton class="p-button-success" icon="fas fa-check" label="Yes"
                 (click)="cd.accept()"></button>
-            <button type="button" pButton icon="pi pi-times" label="No" (click)="cd.reject()"></button>
+            <button type="button" pButton icon="fas fa-times" label="No" (click)="cd.reject()"></button>
         </p-footer>
     </p-confirmDialog>
 </div>
