@@ -3,7 +3,7 @@
         <p-toolbar>
             <div class="p-toolbar-group-left">
                 <ng-container *ngIf="viewMode">
-                    <button pButton *userPermission icon="pi pi-upload" label="Upload"
+                    <button pButton *userPermission icon="fas fa-upload" label="Upload"
                         (click)="toolbarState='upload'"></button>
                     <button pButton icon="fas fa-search" label="Search" (click)="toolbarState='search'"></button>
                 </ng-container>
@@ -28,7 +28,7 @@
                         <div>Images Date: <p-calendar [(ngModel)]="imagesDate" dateFormat="M-dd-yy"></p-calendar></div>
                         <div><p-checkbox label="Is Public" binary="true" [(ngModel)]="isPublic"></p-checkbox></div>
                         <button pButton class="p-button-success" [disabled]="fileUpload.files.length===0"
-                            icon="pi pi-upload" label="Upload" (click)="fileUpload.upload($event)"></button>
+                            icon="fas fa-upload" label="Upload" (click)="fileUpload.upload($event)"></button>
                     </div>
                 </ng-template>
             </p-fileUpload>
