@@ -85,7 +85,7 @@
                             <i [ngClass]="{'fas fa-folder': file.isFolder,'far fa-file-alt': !file.isFolder}"></i>
                         </span>
                         <div class="grid-item-state">
-                            <i *ngIf="file.owner===userName" title="owner" class="grid-item-owner pi pi-user"></i>
+                            <i *ngIf="file.owner===userName" title="owner" class="grid-item-owner fa fa-user"></i>
                             <i *ngIf="!file.isPublic" title="private" class="grid-item-private pi pi-key"></i>
                         </div>
                     </div>
