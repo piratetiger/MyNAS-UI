@@ -1,7 +1,7 @@
-import { Component, ViewEncapsulation, Input, OnInit } from '@angular/core';
+import { Component, ViewEncapsulation } from '@angular/core';
 import { ApiService } from 'src/app/infrastructure/services/api.service/api.service';
-import { DynamicDialogConfig } from 'primeng/dynamicdialog';
 import { LightboxItemModel } from '../models/lightbox-item-model';
+import { CommonViewerComponent } from '../common-viewer/common-viewer.component';
 
 @Component({
     selector: 'image-viewer',
@@ -9,15 +9,10 @@ import { LightboxItemModel } from '../models/lightbox-item-model';
     styleUrls: ['./image-viewer.component.scss'],
     encapsulation: ViewEncapsulation.None
 })
-export class ImageViewerComponent implements OnInit {
-    @Input() items: LightboxItemModel[] = [];
-    @Input() current: LightboxItemModel;
+export class ImageViewerComponent extends CommonViewerComponent {
 
-    constructor(private service: ApiService, private config: DynamicDialogConfig) { }
-
-    ngOnInit() {
-        this.current = this.config.data.current;
-        this.items = this.config.data.items;
+    constructor(private service: ApiService) {
+        super();
     }
 
     public getImageUrl(item: LightboxItemModel) {
