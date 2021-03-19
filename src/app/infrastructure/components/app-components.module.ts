@@ -98,10 +98,6 @@ import { VideoViewerComponent } from './lightbox/video-viewer/video-viewer.compo
         DynamicDialogRef,
         MessageService,
         ConfirmationService,
-    ],
-    entryComponents: [
-        ImageViewerComponent,
-        VideoViewerComponent
     ]
 })
 export class AppComponentsModule { }

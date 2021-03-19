@@ -34,9 +34,6 @@ import { AdminLogComponent } from './admin-log/admin-log.component';
         AdminLogComponent,
     ],
     providers: [
-    ],
-    entryComponents: [
-        AdminAddUserComponent
     ]
 })
 export class AdminModule { }
