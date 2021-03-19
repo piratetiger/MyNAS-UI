@@ -1,5 +1,6 @@
 export class LightboxItemModel {
-    public fileSource: string;
+    public name: string;
+    public type: string;
     public isPublic: boolean;
     public isOwner: boolean;
     public selected = false;

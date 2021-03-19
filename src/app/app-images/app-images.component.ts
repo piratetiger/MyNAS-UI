@@ -120,7 +120,8 @@ export class AppImagesComponent implements OnInit {
                     this.imagesGroup.push({
                         date: dayjs(i).format('YYYY MM DD'),
                         images: groups[i].map((m: ImageModel) => <LightboxItemModel>{
-                            fileSource: m.fileName,
+                            name: m.fileName,
+                            type: 'image',
                             isPublic: m.isPublic,
                             isOwner: m.owner === userName
                         }).reverse()

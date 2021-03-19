@@ -53,7 +53,7 @@
         <p-accordion [multiple]="true">
             <ng-container *ngFor="let videos of videosGroup">
                 <p-accordionTab [header]="videos.date" [selected]="true">
-                    <lightbox #lightbox [editMode]="!viewMode" [sources]="videos.videos" [type]="'video'"></lightbox>
+                    <lightbox #lightbox [editMode]="!viewMode" [items]="videos.videos"></lightbox>
                 </p-accordionTab>
             </ng-container>
         </p-accordion>

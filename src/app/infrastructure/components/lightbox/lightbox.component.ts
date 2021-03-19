@@ -12,44 +12,43 @@ import { LightboxItemModel } from './models/lightbox-item-model';
     encapsulation: ViewEncapsulation.None
 })
 export class LightboxComponent implements OnChanges {
-    @Input() sources: LightboxItemModel[] = [];
-    @Input() type = 'image';
+    @Input() items: LightboxItemModel[] = [];
     @Input() editMode = false;
 
     public get selectedItems(): string[] {
-        return this.sources.filter(s => s.selected).map(s => s.fileSource);
+        return this.items.filter(s => s.selected).map(s => s.name);
     }
 
     constructor(private service: ApiService, private dialogService: DialogService) { }
 
     ngOnChanges(changes: SimpleChanges) {
         if (changes.editMode) {
-            this.sources.forEach(s => s.selected = false);
+            this.items.forEach(s => s.selected = false);
         }
     }
 
-    public getImageUrl(source: string) {
-        if (this.type === 'video') {
-            return `${this.service.serviceUrls.getVideo}?thumb=true&name=${source}`;
+    public getImageUrl(item: LightboxItemModel) {
+        if (item.type === 'video') {
+            return `${this.service.serviceUrls.getVideo}?thumb=true&name=${item.name}`;
         } else {
-            return `${this.service.serviceUrls.getImage}?thumb=true&name=${source}`;
+            return `${this.service.serviceUrls.getImage}?thumb=true&name=${item.name}`;
         }
     }
 
     public itemClick(item: LightboxItemModel) {
         if (!this.editMode) {
-            this.showDetail(item.fileSource);
+            this.showDetail(item);
         } else {
             item.selected = !item.selected;
         }
     }
 
-    public showDetail(source: string) {
-        if (this.type === 'video') {
+    public showDetail(item: LightboxItemModel) {
+        if (item.type === 'video') {
             this.dialogService.open(VideoViewerComponent, {
                 data: {
-                    sources: this.sources,
-                    current: source
+                    sources: this.items,
+                    current: item.name
                 },
                 header: '',
                 width: '70%',
@@ -60,8 +59,8 @@ export class LightboxComponent implements OnChanges {
         } else {
             this.dialogService.open(ImageViewerComponent, {
                 data: {
-                    sources: this.sources,
-                    current: source
+                    sources: this.items,
+                    current: item.name
                 },
                 header: '',
                 width: '70%',

@@ -120,7 +120,8 @@ export class AppVideosComponent implements OnInit {
                     this.videosGroup.push({
                         date: dayjs(i).format('YYYY MM DD'),
                         videos: groups[i].map((m: VideoModel) => <LightboxItemModel>{
-                            fileSource: m.fileName,
+                            name: m.fileName,
+                            type: 'video',
                             isPublic: m.isPublic,
                             isOwner: m.owner === userName
                         }).reverse()
