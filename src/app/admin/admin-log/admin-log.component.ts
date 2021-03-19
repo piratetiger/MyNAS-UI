@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import * as moment from 'moment';
+import * as dayjs from 'dayjs';
 import { LogModel } from '../../infrastructure/models/log-model';
 import { AdminApiService } from '../../infrastructure/services/admin-api.service/admin-api.service';
 
@@ -21,22 +21,22 @@ export class AdminLogComponent {
     public logType = this.logTypes[0].value;
 
     constructor(private service: AdminApiService) {
-        this.startDate = moment().subtract(3, 'days').toDate();
+        this.startDate = dayjs().subtract(3, 'days').toDate();
         this.endDate = new Date();
     }
 
     public refreshLogs() {
         if (this.logType === this.logTypes[0].value) {
             this.service.auditLog({
-                start: moment(this.startDate).format('YYYYMMDD'),
-                end: moment(this.endDate).format('YYYYMMDD')
+                start: dayjs(this.startDate).format('YYYYMMDD'),
+                end: dayjs(this.endDate).format('YYYYMMDD')
             }).subscribe(d => {
                 this.auditLogs = d.data;
             });
         } else {
             this.service.errorLog({
-                start: moment(this.startDate).format('YYYYMMDD'),
-                end: moment(this.endDate).format('YYYYMMDD')
+                start: dayjs(this.startDate).format('YYYYMMDD'),
+                end: dayjs(this.endDate).format('YYYYMMDD')
             }).subscribe(d => {
                 this.errorLogs = d.data;
             });
