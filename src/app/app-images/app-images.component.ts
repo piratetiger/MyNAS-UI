@@ -114,13 +114,14 @@ export class AppImagesComponent implements OnInit {
         }).subscribe(d => {
             this.imagesGroup = [];
             if (d.data.length) {
-                const groups = groupBy(d.data, (i: ImageModel) => i.date);
+                const groups = groupBy(d.data, (i: ImageModel) => dayjs(i.date).format('YYYY MM DD'));
                 const userName = this.appService.userInfo.userName;
-                for (const i of Object.keys(groups)) {
+                for (const key of Object.keys(groups)) {
                     this.imagesGroup.push({
-                        date: dayjs(i).format('YYYY MM DD'),
-                        images: groups[i].map((m: ImageModel) => <LightboxItemModel>{
-                            fileSource: m.fileName,
+                        date: key,
+                        images: groups[key].map((m: ImageModel) => <LightboxItemModel>{
+                            name: m.fileName,
+                            type: 'image',
                             isPublic: m.isPublic,
                             isOwner: m.owner === userName
                         }).reverse()

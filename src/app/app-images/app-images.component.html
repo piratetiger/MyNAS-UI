@@ -53,7 +53,7 @@
         <p-accordion [multiple]="true">
             <ng-container *ngFor="let images of imagesGroup">
                 <p-accordionTab [header]="images.date" [selected]="true">
-                    <lightbox #lightbox [editMode]="!viewMode" [sources]="images.images"></lightbox>
+                    <lightbox #lightbox [editMode]="!viewMode" [items]="images.images"></lightbox>
                 </p-accordionTab>
             </ng-container>
         </p-accordion>
