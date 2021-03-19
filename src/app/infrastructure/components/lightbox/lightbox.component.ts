@@ -47,8 +47,8 @@ export class LightboxComponent implements OnChanges {
         if (item.type === 'video') {
             this.dialogService.open(VideoViewerComponent, {
                 data: {
-                    sources: this.items,
-                    current: item.name
+                    items: this.items,
+                    current: item
                 },
                 header: '',
                 width: '70%',
@@ -59,8 +59,8 @@ export class LightboxComponent implements OnChanges {
         } else {
             this.dialogService.open(ImageViewerComponent, {
                 data: {
-                    sources: this.items,
-                    current: item.name
+                    items: this.items,
+                    current: item
                 },
                 header: '',
                 width: '70%',
