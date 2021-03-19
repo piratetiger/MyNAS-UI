@@ -114,12 +114,12 @@ export class AppVideosComponent implements OnInit {
         }).subscribe(d => {
             this.videosGroup = [];
             if (d.data.length) {
-                const groups = groupBy(d.data, (i: VideoModel) => i.date);
+                const groups = groupBy(d.data, (i: VideoModel) => dayjs(i.date).format('YYYY MM DD'));
                 const userName = this.appService.userInfo.userName;
-                for (const i of Object.keys(groups)) {
+                for (const key of Object.keys(groups)) {
                     this.videosGroup.push({
-                        date: dayjs(i).format('YYYY MM DD'),
-                        videos: groups[i].map((m: VideoModel) => <LightboxItemModel>{
+                        date: key,
+                        videos: groups[key].map((m: VideoModel) => <LightboxItemModel>{
                             name: m.fileName,
                             type: 'video',
                             isPublic: m.isPublic,
