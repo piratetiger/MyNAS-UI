@@ -5,6 +5,5 @@ import { LightboxItemModel } from "../models/lightbox-item-model";
     template: ''
 })
 export abstract class CommonViewerComponent {
-    @Input() items: LightboxItemModel[] = [];
     @Input() current: LightboxItemModel;
 }

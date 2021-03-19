@@ -2,6 +2,7 @@ import { Component, ComponentFactoryResolver, Input, OnInit, ViewChild, ViewCont
 import { DynamicDialogConfig } from "primeng/dynamicdialog";
 import { CommonViewerComponent } from "../common-viewer/common-viewer.component";
 import { ImageViewerComponent } from "../image-viewer/image-viewer.component";
+import { LightboxItemModel } from "../models/lightbox-item-model";
 import { VideoViewerComponent } from "../video-viewer/video-viewer.component";
 
 @Component({
@@ -11,6 +12,8 @@ import { VideoViewerComponent } from "../video-viewer/video-viewer.component";
     encapsulation: ViewEncapsulation.None
 })
 export class DetailViewerComponent extends CommonViewerComponent implements OnInit {
+    @Input() items: LightboxItemModel[] = [];
+
     @ViewChild('viewerContainer', { read: ViewContainerRef, static: true }) viewerContainer: ViewContainerRef;
     component: CommonViewerComponent;
 
@@ -41,7 +44,6 @@ export class DetailViewerComponent extends CommonViewerComponent implements OnIn
             this.component = <CommonViewerComponent>componentRef.instance;
 
             this.component.current = this.current;
-            this.component.items = this.items;
         }
     }
 }
