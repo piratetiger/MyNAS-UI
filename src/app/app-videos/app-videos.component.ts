@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewEncapsulation, ViewChildren, QueryList } from '@angular/core';
-import * as moment from 'moment';
+import * as dayjs from 'dayjs';
 import { groupBy, flatten } from 'lodash';
 import { ApiService } from '../infrastructure/services/api.service/api.service';
 import { VideoModel } from '../infrastructure/models/video-model';
@@ -7,6 +7,8 @@ import { LightboxComponent } from '../infrastructure/components/lightbox/lightbo
 import { ConfirmationService } from 'primeng/api';
 import { LightboxItemModel } from '../infrastructure/components/lightbox/models/lightbox-item-model';
 import { AppService } from '../infrastructure/services/app.service/app.service';
+import * as utc from 'dayjs/plugin/utc';
+dayjs.extend(utc);
 
 @Component({
     selector: 'app-videos',
@@ -47,7 +49,7 @@ export class AppVideosComponent implements OnInit {
     }
 
     constructor(private service: ApiService, private appService: AppService, private confirmationService: ConfirmationService) {
-        this.startDate = moment().subtract(3, 'months').toDate();
+        this.startDate = dayjs().subtract(3, 'months').toDate();
         this.endDate = new Date();
     }
 
@@ -81,7 +83,7 @@ export class AppVideosComponent implements OnInit {
                 for (const file of event.files) {
                     formData.append('files', file);
                 }
-                formData.set('date', moment(this.videosDate).format('YYYYMMDD'));
+                formData.set('date', dayjs(this.videosDate).format('YYYYMMDD'));
                 formData.set('isPublic', this.isPublic.toString());
                 this.service.uploadVideo(formData).subscribe(d => {
                     this.uploadFileList = [];
@@ -95,7 +97,7 @@ export class AppVideosComponent implements OnInit {
 
     public updateDate() {
         const newModel = new VideoModel();
-        newModel.date = moment.utc(moment(this.newDate).format('YYYYMMDD'), 'YYYYMMDD').toDate();
+        newModel.date = dayjs(dayjs(this.newDate).format('YYYYMMDD'), 'YYYYMMDD').utc(true).toDate();
         this.service.updateVideoDate({
             names: this.selectedItems,
             newModel: newModel
@@ -106,8 +108,8 @@ export class AppVideosComponent implements OnInit {
 
     public refreshVideos() {
         this.service.getVideoList({
-            start: moment(this.startDate).format('YYYYMMDD'),
-            end: moment(this.endDate).format('YYYYMMDD'),
+            start: dayjs(this.startDate).format('YYYYMMDD'),
+            end: dayjs(this.endDate).format('YYYYMMDD'),
             owner: this.selectedOwners
         }).subscribe(d => {
             this.videosGroup = [];
@@ -116,7 +118,7 @@ export class AppVideosComponent implements OnInit {
                 const userName = this.appService.userInfo.userName;
                 for (const i of Object.keys(groups)) {
                     this.videosGroup.push({
-                        date: moment(i).format('YYYY MM DD'),
+                        date: dayjs(i).format('YYYY MM DD'),
                         videos: groups[i].map((m: VideoModel) => <LightboxItemModel>{
                             fileSource: m.fileName,
                             isPublic: m.isPublic,
