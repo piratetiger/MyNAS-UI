@@ -5,7 +5,6 @@ import { ApiService } from '../infrastructure/services/api.service/api.service';
 import { ImageModel } from '../infrastructure/models/image-model';
 import { LightboxComponent } from '../infrastructure/components/lightbox/lightbox.component';
 import { ConfirmationService } from 'primeng/api';
-import { LightboxItemModel } from '../infrastructure/components/lightbox/models/lightbox-item-model';
 import { AppService } from '../infrastructure/services/app.service/app.service';
 import * as utc from 'dayjs/plugin/utc';
 dayjs.extend(utc);
@@ -48,7 +47,7 @@ export class AppImagesComponent implements OnInit {
         this.isPublic = true;
     }
 
-    constructor(private service: ApiService, private appService: AppService, private confirmationService: ConfirmationService) {
+    constructor(private service: ApiService, private confirmationService: ConfirmationService) {
         this.startDate = dayjs().subtract(3, 'months').toDate();
         this.endDate = new Date();
     }
@@ -115,16 +114,10 @@ export class AppImagesComponent implements OnInit {
             this.imagesGroup = [];
             if (d.data.length) {
                 const groups = groupBy(d.data, (i: ImageModel) => dayjs(i.date).format('YYYY MM DD'));
-                const userName = this.appService.userInfo.userName;
                 for (const key of Object.keys(groups)) {
                     this.imagesGroup.push({
                         date: key,
-                        images: groups[key].map((m: ImageModel) => <LightboxItemModel>{
-                            name: m.fileName,
-                            type: 'image',
-                            isPublic: m.isPublic,
-                            isOwner: m.owner === userName
-                        }).reverse()
+                        images: groups[key].reverse()
                     });
                 }
             }

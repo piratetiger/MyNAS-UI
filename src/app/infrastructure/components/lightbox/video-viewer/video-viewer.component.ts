@@ -1,7 +1,7 @@
 import { Component, ViewEncapsulation, AfterViewInit, ElementRef } from '@angular/core';
 import { ApiService } from 'src/app/infrastructure/services/api.service/api.service';
-import { LightboxItemModel } from '../models/lightbox-item-model';
 import { CommonViewerComponent } from '../common-viewer/common-viewer.component';
+import { NASModel } from 'src/app/infrastructure/models/nas-model';
 declare var videojs: any;
 
 @Component({
@@ -19,7 +19,7 @@ export class VideoViewerComponent extends CommonViewerComponent implements After
         videojs(this.element.nativeElement.querySelector('.video-js'));
     }
 
-    public getVideoUrl(item: LightboxItemModel) {
-        return `${this.service.serviceUrls.getVideo}?thumb=false&name=${item.name}`;
+    public getVideoUrl(item: NASModel) {
+        return `${this.service.serviceUrls.getVideo}?thumb=false&name=${item.fileName}`;
     }
 }

@@ -1,8 +1,9 @@
 import { Component, ViewEncapsulation, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { ApiService } from '../../services/api.service/api.service';
 import { DialogService } from 'primeng/dynamicdialog';
-import { LightboxItemModel } from './models/lightbox-item-model';
 import { DetailViewerComponent } from './detail-viewer/detail-viewer.component';
+import { NASModel } from '../../models/nas-model';
+import { AppService } from '../../services/app.service/app.service';
 
 @Component({
     selector: 'lightbox',
@@ -11,14 +12,18 @@ import { DetailViewerComponent } from './detail-viewer/detail-viewer.component';
     encapsulation: ViewEncapsulation.None
 })
 export class LightboxComponent implements OnChanges {
-    @Input() items: LightboxItemModel[] = [];
+    @Input() items: NASModel[] = [];
     @Input() editMode = false;
 
+    public userName;
+
     public get selectedItems(): string[] {
-        return this.items.filter(s => s.selected).map(s => s.name);
+        return this.items.filter(s => s.selected).map(s => s.fileName);
     }
 
-    constructor(private service: ApiService, private dialogService: DialogService) { }
+    constructor(private service: ApiService, private appService: AppService, private dialogService: DialogService) {
+        this.userName = this.appService.userInfo.userName;
+    }
 
     ngOnChanges(changes: SimpleChanges) {
         if (changes.editMode) {
@@ -26,15 +31,15 @@ export class LightboxComponent implements OnChanges {
         }
     }
 
-    public getImageUrl(item: LightboxItemModel) {
+    public getImageUrl(item: NASModel) {
         if (item.type === 'video') {
-            return `${this.service.serviceUrls.getVideo}?thumb=true&name=${item.name}`;
+            return `${this.service.serviceUrls.getVideo}?thumb=true&name=${item.fileName}`;
         } else {
-            return `${this.service.serviceUrls.getImage}?thumb=true&name=${item.name}`;
+            return `${this.service.serviceUrls.getImage}?thumb=true&name=${item.fileName}`;
         }
     }
 
-    public itemClick(item: LightboxItemModel) {
+    public itemClick(item: NASModel) {
         if (!this.editMode) {
             this.showDetail(item);
         } else {
@@ -42,7 +47,7 @@ export class LightboxComponent implements OnChanges {
         }
     }
 
-    public showDetail(item: LightboxItemModel) {
+    public showDetail(item: NASModel) {
         this.dialogService.open(DetailViewerComponent, {
             data: {
                 items: this.items,

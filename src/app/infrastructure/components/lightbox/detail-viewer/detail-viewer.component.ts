@@ -1,8 +1,8 @@
 import { Component, ComponentFactoryResolver, Input, OnInit, ViewChild, ViewContainerRef, ViewEncapsulation } from "@angular/core";
 import { DynamicDialogConfig } from "primeng/dynamicdialog";
+import { NASModel } from "src/app/infrastructure/models/nas-model";
 import { CommonViewerComponent } from "../common-viewer/common-viewer.component";
 import { ImageViewerComponent } from "../image-viewer/image-viewer.component";
-import { LightboxItemModel } from "../models/lightbox-item-model";
 import { VideoViewerComponent } from "../video-viewer/video-viewer.component";
 
 @Component({
@@ -12,7 +12,7 @@ import { VideoViewerComponent } from "../video-viewer/video-viewer.component";
     encapsulation: ViewEncapsulation.None
 })
 export class DetailViewerComponent extends CommonViewerComponent implements OnInit {
-    @Input() items: LightboxItemModel[] = [];
+    @Input() items: NASModel[] = [];
 
     @ViewChild('viewerContainer', { read: ViewContainerRef, static: true }) viewerContainer: ViewContainerRef;
     component: CommonViewerComponent;
