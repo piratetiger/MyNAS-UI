@@ -1,0 +1,59 @@
+<div class="media-toolbar">
+    <p-toolbar>
+        <div class="p-toolbar-group-left">
+            <ng-container *ngIf="viewMode">
+                <button pButton *userPermission icon="fas fa-upload" label="Upload"
+                    (click)="toolbarState='upload'"></button>
+                <button pButton icon="fas fa-search" label="Search" (click)="toolbarState='search'"></button>
+            </ng-container>
+            <ng-container *ngIf="!viewMode">
+                <button pButton *dataAdminPermission [disabled]="selectedItems.length===0" icon="far fa-calendar-alt"
+                    label="Change Date" (click)="toolbarState='changeDate'"></button>
+                <button pButton *dataAdminPermission class="p-button-danger" [disabled]="selectedItems.length===0"
+                    icon="fas fa-trash-alt" label="Delete" (click)="deleteFiles()"></button>
+            </ng-container>
+        </div>
+
+        <div class="p-toolbar-group-right">
+            <p-toggleButton *dataAdminPermission onIcon="fas fa-pencil-alt" offIcon="fas fa-ban" [(ngModel)]="viewMode"
+                (onChange)="viewModeChange($event)"></p-toggleButton>
+        </div>
+    </p-toolbar>
+    <p-fieldset *ngIf="toolbarState==='upload' && viewMode" legend="Upload">
+        <p-fileUpload #fileUpload [files]="uploadFileList" accept="video/mp4" customUpload="true"
+            [showUploadButton]=false (uploadHandler)="uploadFiles($event)" multiple="multiple">
+            <ng-template pTemplate="toolbar">
+                <div>
+                    <div>Date: <p-calendar [(ngModel)]="mediaDate" dateFormat="M-dd-yy"></p-calendar>
+                    </div>
+                    <div>
+                        <p-checkbox label="Is Public" binary="true" [(ngModel)]="isPublic"></p-checkbox>
+                    </div>
+                    <button pButton class="p-button-success" [disabled]="fileUpload.files.length===0"
+                        icon="fas fa-upload" label="Upload" (click)="fileUpload.upload($event)"></button>
+                </div>
+            </ng-template>
+        </p-fileUpload>
+    </p-fieldset>
+    <p-fieldset *ngIf="toolbarState==='search' && viewMode" legend="Search">
+        <p-calendar [(ngModel)]="startDate" [maxDate]="endDate" dateFormat="M-dd-yy"></p-calendar>
+        <p-calendar [(ngModel)]="endDate" [minDate]="startDate" dateFormat="M-dd-yy"></p-calendar>
+        <div>
+            Owner:
+            <p-multiSelect [options]="owners" [(ngModel)]="selectedOwners"></p-multiSelect>
+        </div>
+        <button pButton class="p-button-success" icon="fas fa-search" label="Search" (click)="refreshList()"></button>
+    </p-fieldset>
+    <p-fieldset *ngIf="toolbarState==='changeDate' && !viewMode" legend="Change Date">
+        <p-calendar [(ngModel)]="newDate" dateFormat="M-dd-yy"></p-calendar>
+        <button pButton class="p-button-success" icon="fas fa-check" label="Update" (click)="updateDate()"></button>
+    </p-fieldset>
+</div>
+
+<p-confirmDialog #cd header="Confirmation" icon="fas fa-exclamation-triangle">
+    <p-footer>
+        <button type="button" pButton class="p-button-success" icon="fas fa-check" label="Yes"
+            (click)="cd.accept()"></button>
+        <button type="button" pButton icon="fas fa-times" label="No" (click)="cd.reject()"></button>
+    </p-footer>
+</p-confirmDialog>

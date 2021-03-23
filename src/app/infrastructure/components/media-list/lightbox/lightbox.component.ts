@@ -1,9 +1,10 @@
-import { Component, ViewEncapsulation, Input, OnChanges, SimpleChanges } from '@angular/core';
-import { ApiService } from '../../services/api.service/api.service';
+import { Component, ViewEncapsulation, Input } from '@angular/core';
 import { DialogService } from 'primeng/dynamicdialog';
+import { NASModel } from 'src/app/infrastructure/models/nas-model';
+import { ApiService } from 'src/app/infrastructure/services/api.service/api.service';
+import { AppService } from 'src/app/infrastructure/services/app.service/app.service';
+import { MediaListService } from '../media-list-services/media-list.service';
 import { DetailViewerComponent } from './detail-viewer/detail-viewer.component';
-import { NASModel } from '../../models/nas-model';
-import { AppService } from '../../services/app.service/app.service';
 
 @Component({
     selector: 'lightbox',
@@ -11,24 +12,23 @@ import { AppService } from '../../services/app.service/app.service';
     styleUrls: ['./lightbox.component.scss'],
     encapsulation: ViewEncapsulation.None
 })
-export class LightboxComponent implements OnChanges {
+export class LightboxComponent {
     @Input() items: NASModel[] = [];
-    @Input() editMode = false;
 
-    public userName;
+    public editMode: boolean;
+    public userName: string;
 
     public get selectedItems(): string[] {
         return this.items.filter(s => s.selected).map(s => s.fileName);
     }
 
-    constructor(private service: ApiService, private appService: AppService, private dialogService: DialogService) {
+    constructor(private service: ApiService, private appService: AppService, private dialogService: DialogService, private mediaListService: MediaListService) {
         this.userName = this.appService.userInfo.userName;
-    }
+        this.editMode = this.mediaListService.editMode;
 
-    ngOnChanges(changes: SimpleChanges) {
-        if (changes.editMode) {
-            this.items.forEach(s => s.selected = false);
-        }
+        this.mediaListService.editModeChanged.subscribe(e => {
+            this.editMode = e;
+        });
     }
 
     public getImageUrl(item: NASModel) {
@@ -43,7 +43,13 @@ export class LightboxComponent implements OnChanges {
         if (!this.editMode) {
             this.showDetail(item);
         } else {
-            item.selected = !item.selected;
+            if (item.selected) {
+                item.selected = false;
+                this.mediaListService.selectedItems.splice(this.mediaListService.selectedItems.indexOf(item), 1);
+            } else {
+                item.selected = true;
+                this.mediaListService.selectedItems.push(item);
+            }
         }
     }
 

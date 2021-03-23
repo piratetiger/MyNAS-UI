@@ -25,20 +25,23 @@ import { TableModule } from 'primeng/table';
 import { DataViewModule } from 'primeng/dataview';
 import { DeferModule } from 'primeng/defer';
 
-import { LightboxComponent } from './lightbox/lightbox.component';
 import { BusyIndicatorComponent } from './busy-indicator/busy-indicator.component';
-import { ImageViewerComponent } from './lightbox/image-viewer/image-viewer.component';
 import { DynamicDialogConfig, DynamicDialogRef, DialogService } from 'primeng/dynamicdialog';
 import { UserRoleDropdownComponent } from './user-role-dropdown/user-role-dropdown.component';
-import { VideoViewerComponent } from './lightbox/video-viewer/video-viewer.component';
-import { DetailViewerComponent } from './lightbox/detail-viewer/detail-viewer.component';
+import { LightboxComponent } from './media-list/lightbox/lightbox.component';
+import { MediaToolbarComponent } from './media-list/media-toolbar/media-toolbar.component';
+
+import { MediaListService } from './media-list/media-list-services/media-list.service';
+
+import { AppDirectivesModule } from '../directives/app-directives.module';
 
 @NgModule({
     declarations: [
         LightboxComponent,
-        DetailViewerComponent,
-        ImageViewerComponent,
-        VideoViewerComponent,
+        MediaToolbarComponent,
+        // DetailViewerComponent,
+        // ImageViewerComponent,
+        // VideoViewerComponent,
         BusyIndicatorComponent,
         UserRoleDropdownComponent,
     ],
@@ -66,10 +69,13 @@ import { DetailViewerComponent } from './lightbox/detail-viewer/detail-viewer.co
         MultiSelectModule,
         TableModule,
         DataViewModule,
-        DeferModule
+        DeferModule,
+
+        AppDirectivesModule
     ],
     exports: [
         LightboxComponent,
+        MediaToolbarComponent,
         BusyIndicatorComponent,
         UserRoleDropdownComponent,
 
@@ -92,7 +98,9 @@ import { DetailViewerComponent } from './lightbox/detail-viewer/detail-viewer.co
         MultiSelectModule,
         TableModule,
         DataViewModule,
-        DeferModule
+        DeferModule,
+
+        AppDirectivesModule
     ],
     providers: [
         DialogService,
@@ -100,6 +108,8 @@ import { DetailViewerComponent } from './lightbox/detail-viewer/detail-viewer.co
         DynamicDialogRef,
         MessageService,
         ConfirmationService,
+
+        MediaListService
     ]
 })
 export class AppComponentsModule { }
