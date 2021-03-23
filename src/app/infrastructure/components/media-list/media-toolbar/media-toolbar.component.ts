@@ -54,7 +54,7 @@ export class MediaToolbarComponent implements OnInit {
     }
 
     public viewModeChange(e) {
-        this.mediaListService.editModeChanged.emit(!e.checked);
+        this.mediaListService.viewModeChanged.emit(e.checked);
         this.toolbarState = null;
     }
 

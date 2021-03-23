@@ -15,7 +15,7 @@ import { DetailViewerComponent } from './detail-viewer/detail-viewer.component';
 export class LightboxComponent {
     @Input() items: NASModel[] = [];
 
-    public editMode: boolean;
+    public viewMode: boolean;
     public userName: string;
 
     public get selectedItems(): string[] {
@@ -24,10 +24,10 @@ export class LightboxComponent {
 
     constructor(private service: ApiService, private appService: AppService, private dialogService: DialogService, private mediaListService: MediaListService) {
         this.userName = this.appService.userInfo.userName;
-        this.editMode = this.mediaListService.editMode;
+        this.viewMode = this.mediaListService.viewMode;
 
-        this.mediaListService.editModeChanged.subscribe(e => {
-            this.editMode = e;
+        this.mediaListService.viewModeChanged.subscribe(e => {
+            this.viewMode = e;
         });
     }
 
@@ -40,7 +40,7 @@ export class LightboxComponent {
     }
 
     public itemClick(item: NASModel) {
-        if (!this.editMode) {
+        if (this.viewMode) {
             this.showDetail(item);
         } else {
             if (item.selected) {

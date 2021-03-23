@@ -4,9 +4,9 @@ import { NASModel } from "src/app/infrastructure/models/nas-model";
 @Injectable()
 export class MediaListService {
     private _selectedItems: NASModel[] = [];
-    private _editMode: boolean = false;
+    private _viewMode: boolean = true;
 
-    public editModeChanged = new EventEmitter<boolean>();
+    public viewModeChanged = new EventEmitter<boolean>();
     public refreshMediaList = new EventEmitter<any>();
 
     public get selectedItems(): NASModel[] {
@@ -17,18 +17,18 @@ export class MediaListService {
         this._selectedItems = value;
     }
 
-    public get editMode(): boolean {
-        return this._editMode;
+    public get viewMode(): boolean {
+        return this._viewMode;
     }
 
-    public set editMode(value: boolean) {
-        this._editMode = value;
+    public set viewMode(value: boolean) {
+        this._viewMode = value;
     }
 
     constructor() {
-        this.editModeChanged.subscribe(e => {
+        this.viewModeChanged.subscribe(e => {
             this._selectedItems = [];
-            this._editMode = e;
+            this._viewMode = e;
         });
     }
 }

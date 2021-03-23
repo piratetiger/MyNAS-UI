@@ -3,7 +3,7 @@
         <div pDefer>
             <ng-template>
                 <img class="lightbox-image" [src]="getImageUrl(item)" />
-                <div *ngIf="editMode" class="lightbox-image-state">
+                <div *ngIf="!viewMode" class="lightbox-image-state">
                     <i [style.color]="item.selected?'green':'gray'" class="fas fa-check-circle"></i>
                 </div>
                 <div class="lightbox-state">
