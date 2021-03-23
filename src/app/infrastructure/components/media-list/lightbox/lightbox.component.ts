@@ -28,6 +28,7 @@ export class LightboxComponent {
 
         this.mediaListService.viewModeChanged.subscribe(e => {
             this.viewMode = e;
+            this.items.forEach(i => i.selected = false);
         });
     }
 
