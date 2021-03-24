@@ -20,6 +20,6 @@ export class VideoViewerComponent extends CommonViewerComponent implements After
     }
 
     public getVideoUrl(item: NASModel) {
-        return `${this.service.serviceUrls.getVideo}?thumb=false&name=${item.fileName}`;
+        return `${this.service.serviceUrls.video.getItem}?thumb=false&name=${item.fileName}`;
     }
 }

@@ -16,6 +16,6 @@ export class ImageViewerComponent extends CommonViewerComponent {
     }
 
     public getImageUrl(item: NASModel) {
-        return `${this.service.serviceUrls.getImage}?thumb=false&name=${item.fileName}`;
+        return `${this.service.serviceUrls.image.getItem}?thumb=false&name=${item.fileName}`;
     }
 }

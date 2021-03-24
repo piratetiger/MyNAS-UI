@@ -3,10 +3,9 @@ import * as dayjs from 'dayjs';
 import { groupBy, flatten } from 'lodash';
 import { ApiService } from '../infrastructure/services/api.service/api.service';
 import { ImageModel } from '../infrastructure/models/image-model';
-import { LightboxComponent } from '../infrastructure/components/lightbox/lightbox.component';
 import { ConfirmationService } from 'primeng/api';
-import { AppService } from '../infrastructure/services/app.service/app.service';
 import * as utc from 'dayjs/plugin/utc';
+import { LightboxComponent } from '../infrastructure/components/media-list/lightbox/lightbox.component';
 dayjs.extend(utc);
 
 @Component({
@@ -54,7 +53,7 @@ export class AppImagesComponent implements OnInit {
 
     ngOnInit(): void {
         this.refreshImages();
-        this.service.getUserList().subscribe(d => {
+        this.service.userService.getItemList({}).subscribe(d => {
             this.owners = d.data.map(u => {
                 return { 'label': u.nickName ? u.nickName : u.userName, 'value': u.userName };
             });
@@ -65,7 +64,7 @@ export class AppImagesComponent implements OnInit {
         this.confirmationService.confirm({
             message: `Are you sure that you want to delete all ${this.selectedItems.length} items?`,
             accept: () => {
-                this.service.deleteImage({
+                this.service.imageService.deleteItem({
                     names: this.selectedItems
                 }).subscribe(d => {
                     this.refreshImages();
@@ -84,7 +83,7 @@ export class AppImagesComponent implements OnInit {
                 }
                 formData.set('date', dayjs(this.imagesDate).format('YYYYMMDD'));
                 formData.set('isPublic', this.isPublic.toString());
-                this.service.uploadImage(formData).subscribe(d => {
+                this.service.imageService.uploadItem(formData).subscribe(d => {
                     this.uploadFileList = [];
                     if (d.data) {
                         this.refreshImages();
@@ -97,7 +96,7 @@ export class AppImagesComponent implements OnInit {
     public updateDate() {
         const newModel = new ImageModel();
         newModel.date = dayjs(dayjs(this.newDate).format('YYYYMMDD'), 'YYYYMMDD').utc(true).toDate();
-        this.service.updateImageDate({
+        this.service.imageService.updateItem({
             names: this.selectedItems,
             newModel: newModel
         }).subscribe(d => {
@@ -106,7 +105,7 @@ export class AppImagesComponent implements OnInit {
     }
 
     public refreshImages() {
-        this.service.getImageList({
+        this.service.imageService.getItemList({
             start: dayjs(this.startDate).format('YYYYMMDD'),
             end: dayjs(this.endDate).format('YYYYMMDD'),
             owner: this.selectedOwners

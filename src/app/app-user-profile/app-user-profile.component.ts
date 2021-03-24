@@ -27,7 +27,7 @@ export class AppUserProfileComponent {
     }
 
     public submit() {
-        this.apiService.updateUser({
+        this.apiService.userService.updateItem({
             user: this.user,
             password: this.newPassword,
             oldPassword: this.oldPassword

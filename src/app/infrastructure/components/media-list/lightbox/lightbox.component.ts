@@ -33,11 +33,7 @@ export class LightboxComponent {
     }
 
     public getImageUrl(item: NASModel) {
-        if (item.type === 'video') {
-            return `${this.service.serviceUrls.getVideo}?thumb=true&name=${item.fileName}`;
-        } else {
-            return `${this.service.serviceUrls.getImage}?thumb=true&name=${item.fileName}`;
-        }
+        return `${this.service.serviceUrls[item.type].getItem}?thumb=true&name=${item.fileName}`;
     }
 
     public itemClick(item: NASModel) {

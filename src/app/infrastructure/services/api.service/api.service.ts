@@ -14,57 +14,43 @@ import { FileModel } from '../../models/file-model';
 export class ApiService {
     public serviceUrls = serviceList;
 
-    constructor(private http: HttpClient) { }
+    public imageService: NASApiService<ImageModel>;
+    public videoService: NASApiService<VideoModel>;
+    public fileService: NASApiService<FileModel>;
+    public userService: NASApiService<UserModel>;
+
+    constructor(private http: HttpClient) {
+        this.imageService = new NASApiService<ImageModel>(http, 'image');
+        this.videoService = new NASApiService<VideoModel>(http, 'video');
+        this.fileService = new NASApiService<FileModel>(http, 'file');
+        this.userService = new NASApiService<UserModel>(http, 'user');
+    }
 
     public login(body: any): Observable<DataResult<UserModel>> {
-        return this.http.post<DataResult<UserModel>>(serviceList.login, body);
+        return this.http.post<DataResult<UserModel>>(serviceList.user.login, body);
+    }
+}
+
+class NASApiService<T> {
+    constructor(private http: HttpClient, private type: string) { }
+
+    public uploadItem(body: any): Observable<DataResult<boolean>> {
+        return this.http.post<DataResult<boolean>>(serviceList[this.type].uploadItem, body);
     }
 
-    // images
-    public uploadImage(body: any): Observable<DataResult<boolean>> {
-        return this.http.post<DataResult<boolean>>(serviceList.uploadImage, body);
-    }
-    public getImageList(body: any): Observable<DataResult<ImageModel>> {
-        return this.http.post<DataResult<ImageModel>>(serviceList.getImageList, body);
-    }
-    public deleteImage(body: any): Observable<DataResult<boolean>> {
-        return this.http.post<DataResult<boolean>>(serviceList.deleteImage, body);
-    }
-    public updateImageDate(body: any): Observable<DataResult<boolean>> {
-        return this.http.post<DataResult<boolean>>(serviceList.updateImageDate, body);
+    public getItemList(body: any): Observable<DataResult<T>> {
+        return this.http.post<DataResult<T>>(serviceList[this.type].getItemList, body);
     }
 
-    // videos
-    public uploadVideo(body: any): Observable<DataResult<boolean>> {
-        return this.http.post<DataResult<boolean>>(serviceList.uploadVideo, body);
-    }
-    public getVideoList(body: any): Observable<DataResult<VideoModel>> {
-        return this.http.post<DataResult<VideoModel>>(serviceList.getVideoList, body);
-    }
-    public deleteVideo(body: any): Observable<DataResult<boolean>> {
-        return this.http.post<DataResult<boolean>>(serviceList.deleteVideo, body);
-    }
-    public updateVideoDate(body: any): Observable<DataResult<boolean>> {
-        return this.http.post<DataResult<boolean>>(serviceList.updateVideoDate, body);
+    public deleteItem(body: any): Observable<DataResult<boolean>> {
+        return this.http.post<DataResult<boolean>>(serviceList[this.type].deleteItem, body);
     }
 
-    // files
-    public uploadFile(body: any): Observable<DataResult<boolean>> {
-        return this.http.post<DataResult<boolean>>(serviceList.uploadFile, body);
-    }
-    public getFileList(body: any): Observable<DataResult<FileModel>> {
-        return this.http.post<DataResult<FileModel>>(serviceList.getFileList, body);
-    }
-    public createFolder(body: any): Observable<DataResult<boolean>> {
-        return this.http.post<DataResult<boolean>>(serviceList.createFolder, body);
+    public updateItem(body: any): Observable<DataResult<boolean>> {
+        return this.http.post<DataResult<boolean>>(serviceList[this.type].updateItem, body);
     }
 
-    // user
-    public updateUser(body: any): Observable<DataResult<boolean>> {
-        return this.http.post<DataResult<boolean>>(serviceList.updateUser, body);
-    }
-
-    public getUserList(): Observable<DataResult<UserModel>> {
-        return this.http.post<DataResult<UserModel>>(serviceList.getUserList, {});
+    public addItem(body: any): Observable<DataResult<boolean>> {
+        return this.http.post<DataResult<boolean>>(serviceList[this.type].addItem, body);
     }
 }

@@ -1,27 +1,30 @@
 export default {
-    'login': '/Api/User/login',
+    image: {
+        'uploadItem': '/Api/Images/add',
+        'getItemList': '/Api/Images/list',
+        'getItem': '/Api/Images',
+        'deleteItem': '/Api/Images/delete',
+        'updateItem': '/Api/Images/updateDate',
+    },
 
-    // images
-    'uploadImage': '/Api/Images/add',
-    'getImageList': '/Api/Images/list',
-    'getImage': '/Api/Images',
-    'deleteImage': '/Api/Images/delete',
-    'updateImageDate': '/Api/Images/updateDate',
+    video: {
+        'uploadItem': '/Api/Videos/add',
+        'getItemList': '/Api/Videos/list',
+        'getItem': '/Api/Videos',
+        'deleteItem': '/Api/Videos/delete',
+        'updateItem': '/Api/Videos/updateDate',
+    },
 
-    // videos
-    'uploadVideo': '/Api/Videos/add',
-    'getVideoList': '/Api/Videos/list',
-    'getVideo': '/Api/Videos',
-    'deleteVideo': '/Api/Videos/delete',
-    'updateVideoDate': '/Api/Videos/updateDate',
+    file: {
+        'uploadItem': '/Api/Files/add',
+        'getItemList': '/Api/Files/list',
+        'getItem': '/Api/Files',
+        'addItem': '/Api/Files/folder/add',
+    },
 
-    // files
-    'uploadFile': '/Api/Files/add',
-    'getFileList': '/Api/Files/list',
-    'getFile': '/Api/Files',
-    'createFolder': '/Api/Files/folder/add',
-
-    // user
-    'updateUser': '/Api/User/update',
-    'getUserList': '/Api/User/list'
+    user: {
+        'login': '/Api/User/login',
+        'updateItem': '/Api/User/update',
+        'getItemList': '/Api/User/list'
+    }
 };

@@ -20,7 +20,7 @@
         </div>
     </p-toolbar>
     <p-fieldset *ngIf="toolbarState==='upload' && viewMode" legend="Upload">
-        <p-fileUpload #fileUpload [files]="uploadFileList" accept="video/mp4" customUpload="true"
+        <p-fileUpload #fileUpload [files]="uploadFileList" [accept]="acceptType" customUpload="true"
             [showUploadButton]=false (uploadHandler)="uploadFiles($event)" multiple="multiple">
             <ng-template pTemplate="toolbar">
                 <div>
