@@ -28,8 +28,9 @@ import { DeferModule } from 'primeng/defer';
 import { BusyIndicatorComponent } from './busy-indicator/busy-indicator.component';
 import { DynamicDialogConfig, DynamicDialogRef, DialogService } from 'primeng/dynamicdialog';
 import { UserRoleDropdownComponent } from './user-role-dropdown/user-role-dropdown.component';
-import { LightboxComponent } from './media-list/lightbox/lightbox.component';
 import { MediaToolbarComponent } from './media-list/media-toolbar/media-toolbar.component';
+import { MediaListComponent } from './media-list/media-list/media-list.component';
+import { LightboxComponent } from './media-list/lightbox/lightbox.component';
 
 import { MediaListService } from './media-list/media-list-services/media-list.service';
 
@@ -37,11 +38,9 @@ import { AppDirectivesModule } from '../directives/app-directives.module';
 
 @NgModule({
     declarations: [
-        LightboxComponent,
         MediaToolbarComponent,
-        // DetailViewerComponent,
-        // ImageViewerComponent,
-        // VideoViewerComponent,
+        MediaListComponent,
+        LightboxComponent,
         BusyIndicatorComponent,
         UserRoleDropdownComponent,
     ],
@@ -74,8 +73,8 @@ import { AppDirectivesModule } from '../directives/app-directives.module';
         AppDirectivesModule
     ],
     exports: [
-        LightboxComponent,
         MediaToolbarComponent,
+        MediaListComponent,
         BusyIndicatorComponent,
         UserRoleDropdownComponent,
 
