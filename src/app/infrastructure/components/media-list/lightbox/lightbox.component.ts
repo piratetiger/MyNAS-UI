@@ -18,8 +18,8 @@ export class LightboxComponent {
     public viewMode: boolean;
     public userName: string;
 
-    public get selectedItems(): string[] {
-        return this.items.filter(s => s.selected).map(s => s.fileName);
+    public get selectedItems(): NASModel[] {
+        return this.mediaListService.selectedItems;
     }
 
     constructor(private service: ApiService, private appService: AppService, private dialogService: DialogService, private mediaListService: MediaListService) {
@@ -28,7 +28,6 @@ export class LightboxComponent {
 
         this.mediaListService.viewModeChanged.subscribe(e => {
             this.viewMode = e;
-            this.items.forEach(i => i.selected = false);
         });
     }
 
@@ -40,11 +39,10 @@ export class LightboxComponent {
         if (this.viewMode) {
             this.showDetail(item);
         } else {
-            if (item.selected) {
-                item.selected = false;
-                this.mediaListService.selectedItems.splice(this.mediaListService.selectedItems.indexOf(item), 1);
+            const index = this.selectedItems.indexOf(item);
+            if (index > -1) {
+                this.mediaListService.selectedItems.splice(index, 1);
             } else {
-                item.selected = true;
                 this.mediaListService.selectedItems.push(item);
             }
         }
