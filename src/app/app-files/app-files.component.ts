@@ -53,7 +53,7 @@ export class AppFilesComponent implements OnInit {
                 }
                 formData.set('isPublic', this.isPublic.toString());
                 formData.set('cate', this._cate);
-                this.service.uploadFile(formData).subscribe(d => {
+                this.service.fileService.uploadItem(formData).subscribe(d => {
                     this.uploadFileList = [];
                     if (d.data) {
                         this.refreshFiles();
@@ -72,7 +72,7 @@ export class AppFilesComponent implements OnInit {
                     cate: this._cate,
                     isPublic: this.isPublic
                 };
-                this.service.createFolder(request).subscribe(d => {
+                this.service.fileService.addItem(request).subscribe(d => {
                     this.refreshFiles();
                 });
             }
@@ -100,12 +100,12 @@ export class AppFilesComponent implements OnInit {
             this.pathList.push(file);
             this.refreshFiles();
         } else {
-            window.open(`${this.service.serviceUrls.getFile}?name=${file.keyName}`, '_blank');
+            window.open(`${this.service.serviceUrls.file.getItem}?name=${file.keyName}`, '_blank');
         }
     }
 
     public refreshFiles() {
-        this.service.getFileList({
+        this.service.fileService.getItemList({
             cate: this._cate,
             owner: this.selectedOwners
         }).subscribe(d => {

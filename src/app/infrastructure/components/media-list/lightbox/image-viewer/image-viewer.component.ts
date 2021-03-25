@@ -1,7 +1,7 @@
 import { Component, ViewEncapsulation } from '@angular/core';
 import { ApiService } from 'src/app/infrastructure/services/api.service/api.service';
-import { LightboxItemModel } from '../models/lightbox-item-model';
 import { CommonViewerComponent } from '../common-viewer/common-viewer.component';
+import { NASModel } from 'src/app/infrastructure/models/nas-model';
 
 @Component({
     selector: 'image-viewer',
@@ -15,7 +15,7 @@ export class ImageViewerComponent extends CommonViewerComponent {
         super();
     }
 
-    public getImageUrl(item: LightboxItemModel) {
-        return `${this.service.serviceUrls.getImage}?thumb=false&name=${item.name}`;
+    public getImageUrl(item: NASModel) {
+        return `${this.service.serviceUrls.image.getItem}?thumb=false&name=${item.fileName}`;
     }
 }

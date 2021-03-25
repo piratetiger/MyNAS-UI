@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { AppComponentsModule } from './components/app-components.module';
 import { AppPipesModule } from './pipes/app-pipes.module';
 import { AppServicesModule } from './services/app-services.module';
-import { AppDirectivesModule } from './directives/app-directives.module';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { AuthInterceptor } from './http-interceptor/auth-interceptor';
@@ -16,13 +15,11 @@ import { BusyIndicatorInterceptor } from './http-interceptor/busy-indicator-inte
         AppComponentsModule,
         AppPipesModule,
         AppServicesModule,
-        AppDirectivesModule
     ],
     exports: [
         AppComponentsModule,
         AppPipesModule,
         AppServicesModule,
-        AppDirectivesModule
     ],
     providers: [
         { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },

@@ -3,11 +3,11 @@
         <div pDefer>
             <ng-template>
                 <img class="lightbox-image" [src]="getImageUrl(item)" />
-                <div *ngIf="editMode" class="lightbox-image-state">
-                    <i [style.color]="item.selected?'green':'gray'" class="fas fa-check-circle"></i>
+                <div *ngIf="!viewMode" class="lightbox-image-state">
+                    <i [style.color]="selectedItems.indexOf(item)>-1?'green':'gray'" class="fas fa-check-circle"></i>
                 </div>
                 <div class="lightbox-state">
-                    <i *ngIf="item.isOwner" title="owner" class="lightbox-image-owner fas fa-user"></i>
+                    <i *ngIf="item.owner===userName" title="owner" class="lightbox-image-owner fas fa-user"></i>
                     <i *ngIf="!item.isPublic" title="private" class="lightbox-image-private fas fa-key"></i>
                 </div>
             </ng-template>

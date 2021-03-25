@@ -55,6 +55,14 @@ body {
   margin: auto;
 }
 
+.content-toolbar {
+  margin: 5px;
+}
+
+.content-view {
+  margin-top: 5px;
+}
+
 //primeng
 .p-dialog-content {
   height: 100%;
@@ -62,14 +70,6 @@ body {
 
 p-calendar input {
   width: 100px;
-}
-
-.content-toolbar {
-  margin: 5px;
-
-  button+button {
-    margin-left: 5px;
-  }
 }
 
 .p-multiselect {

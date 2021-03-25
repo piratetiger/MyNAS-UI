@@ -1,0 +1,9 @@
+<div class="media-list">
+    <p-accordion [multiple]="true">
+        <ng-container *ngFor="let group of itemGroup">
+            <p-accordionTab [header]="group.date" [selected]="true">
+                <lightbox #lightbox [items]="group.items"></lightbox>
+            </p-accordionTab>
+        </ng-container>
+    </p-accordion>
+</div>

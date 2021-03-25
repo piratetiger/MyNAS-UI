@@ -1,9 +1,9 @@
 import { Component, Input } from "@angular/core";
-import { LightboxItemModel } from "../models/lightbox-item-model";
+import { NASModel } from "src/app/infrastructure/models/nas-model";
 
 @Component({
     template: ''
 })
 export abstract class CommonViewerComponent {
-    @Input() current: LightboxItemModel;
+    @Input() current: NASModel;
 }
