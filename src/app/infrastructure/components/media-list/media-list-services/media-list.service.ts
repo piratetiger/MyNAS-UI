@@ -31,4 +31,9 @@ export class MediaListService {
             this._viewMode = e;
         });
     }
+
+    public reset() {
+        this._selectedItems = [];
+        this._viewMode = true;
+    }
 }

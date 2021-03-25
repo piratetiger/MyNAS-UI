@@ -1,18 +1,20 @@
-import { Component, Input, OnInit } from "@angular/core";
+import { Component, Input, OnDestroy, OnInit } from "@angular/core";
 import * as dayjs from 'dayjs';
+import * as utc from 'dayjs/plugin/utc';
 import { groupBy } from 'lodash';
 import { ConfirmationService } from "primeng/api";
 import { forkJoin } from "rxjs";
 import { NASModel } from "src/app/infrastructure/models/nas-model";
 import { ApiService } from "src/app/infrastructure/services/api.service/api.service";
 import { MediaListService } from "../media-list-services/media-list.service";
+dayjs.extend(utc);
 
 @Component({
     selector: 'media-toolbar',
     templateUrl: './media-toolbar.component.html',
     styleUrls: ['./media-toolbar.component.scss'],
 })
-export class MediaToolbarComponent implements OnInit {
+export class MediaToolbarComponent implements OnInit, OnDestroy {
     @Input() type: string = 'video,image';
     public static typeAcceptMapping = {
         video: 'video/mp4',
@@ -55,6 +57,10 @@ export class MediaToolbarComponent implements OnInit {
     constructor(private mediaListService: MediaListService, private service: ApiService, private confirmationService: ConfirmationService) {
         this.startDate = dayjs().subtract(3, 'months').toDate();
         this.endDate = new Date();
+    }
+
+    ngOnDestroy(): void {
+        this.mediaListService.reset();
     }
 
     ngOnInit(): void {
@@ -103,10 +109,10 @@ export class MediaToolbarComponent implements OnInit {
                     }
                     formData.set('date', dayjs(this.mediaDate).format('YYYYMMDD'));
                     formData.set('isPublic', this.isPublic.toString());
-                    return this.service[key+'Service'].uploadItem(formData);
+                    return this.service[key + 'Service'].uploadItem(formData);
                 })
 
-                forkJoin(callList).subscribe(d=>{
+                forkJoin(callList).subscribe(d => {
                     this.uploadFileList = [];
                     this.refreshList();
                 })
