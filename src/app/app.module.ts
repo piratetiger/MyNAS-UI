@@ -5,33 +5,25 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
-import { AppHeaderComponent } from './app-header/app-header.component';
-import { AppFooterComponent } from './app-footer/app-footer.component';
-import { AppMainComponent } from './app-main/app-main.component';
-import { AppLoginComponent } from './app-login/app-login.component';
-import { AppImagesComponent } from './app-images/app-images.component';
-import { AppVideosComponent } from './app-videos/app-videos.component';
-import { AppFilesComponent } from './app-files/app-files.component';
-import { AppSystemComponent } from './app-system/app-system.component';
+import { HeaderComponent } from './core/header/header.component';
+import { FooterComponent } from './core/footer/footer.component';
+import { MainComponent } from './core/main/main.component';
+import { LoginComponent } from './core/login/login.component';
 
 import { AppRoutingModule } from './app-routing.module';
-import { AdminModule } from './admin/admin.module';
-import { AppInfrastructureModule } from './infrastructure/app-infrastructure.module';
+import { SharedModule } from './shared/shared.module';
 
-import { AppUserProfileComponent } from './app-user-profile/app-user-profile.component';
+import { AuthInterceptor } from './core/interceptor/auth.interceptor';
+import { MessageInterceptor } from './core/interceptor/message.interceptor';
+import { BusyIndicatorInterceptor } from './core/interceptor/busy-indicator.interceptor';
 
 @NgModule({
   declarations: [
     AppComponent,
-    AppHeaderComponent,
-    AppFooterComponent,
-    AppMainComponent,
-    AppLoginComponent,
-    AppImagesComponent,
-    AppVideosComponent,
-    AppFilesComponent,
-    AppSystemComponent,
-    AppUserProfileComponent,
+    HeaderComponent,
+    FooterComponent,
+    MainComponent,
+    LoginComponent,
   ],
   imports: [
     BrowserModule,
@@ -40,10 +32,12 @@ import { AppUserProfileComponent } from './app-user-profile/app-user-profile.com
     HttpClientModule,
 
     AppRoutingModule,
-    AdminModule,
-    AppInfrastructureModule,
+    SharedModule,
   ],
   providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: MessageInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: BusyIndicatorInterceptor, multi: true },
   ],
   bootstrap: [AppComponent]
 })
