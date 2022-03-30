@@ -2,7 +2,7 @@ import { Component, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
 import { ApiService } from '../infrastructure/services/api.service/api.service';
 import { AppService } from '../infrastructure/services/app.service/app.service';
-import { head } from 'lodash';
+import { head } from 'lodash-es';
 
 @Component({
     selector: 'app-login',

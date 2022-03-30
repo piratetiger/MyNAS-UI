@@ -1,7 +1,7 @@
 import { Component, Input, OnDestroy, OnInit } from "@angular/core";
 import * as dayjs from 'dayjs';
 import * as utc from 'dayjs/plugin/utc';
-import { groupBy } from 'lodash';
+import { groupBy } from 'lodash-es';
 import { ConfirmationService } from "primeng/api";
 import { forkJoin } from "rxjs";
 import { NASModel } from "src/app/infrastructure/models/nas-model";

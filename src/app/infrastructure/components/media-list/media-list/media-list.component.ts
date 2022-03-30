@@ -2,7 +2,7 @@ import { Component, Input } from "@angular/core";
 import * as dayjs from 'dayjs';
 import { ApiService } from "src/app/infrastructure/services/api.service/api.service";
 import { MediaListService } from "../media-list-services/media-list.service";
-import { groupBy } from 'lodash';
+import { groupBy } from 'lodash-es';
 import { NASModel } from "src/app/infrastructure/models/nas-model";
 import { forkJoin } from "rxjs";
 import { DataResult } from "src/app/infrastructure/models/data-result";
