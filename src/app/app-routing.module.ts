@@ -1,26 +1,23 @@
 import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
-import { AppMainComponent } from './app-main/app-main.component';
-import { AppLoginComponent } from './app-login/app-login.component';
-import { AppImagesComponent } from './app-images/app-images.component';
-import { AppVideosComponent } from './app-videos/app-videos.component';
-import { AppFilesComponent } from './app-files/app-files.component';
-import { AppService } from './infrastructure/services/app.service/app.service';
-import { AppSystemComponent } from './app-system/app-system.component';
-import { AppUserProfileComponent } from './app-user-profile/app-user-profile.component';
+import { Routes, RouterModule, PreloadAllModules } from '@angular/router';
+import { MainComponent } from './core/main/main.component';
+import { LoginComponent } from './core/login/login.component';
+import { AppService } from './shared/services/app.service/app.service';
 
 const routes: Routes = [
-  { path: '', component: AppMainComponent, canActivate: [AppService] },
-  { path: 'login', component: AppLoginComponent },
-  { path: 'images', component: AppImagesComponent, canActivate: [AppService] },
-  { path: 'videos', component: AppVideosComponent, canActivate: [AppService] },
-  { path: 'files', component: AppFilesComponent, canActivate: [AppService] },
-  { path: 'system', component: AppSystemComponent, canActivate: [AppService] },
-  { path: 'user', component: AppUserProfileComponent, canActivate: [AppService] },
+  { path: '', component: MainComponent, pathMatch: 'full', canActivate: [AppService] },
+  { path: 'login', component: LoginComponent },
+  { path: 'images', loadChildren: () => import('./modules/images/images.module').then((m) => m.ImagesModule) },
+  { path: 'videos', loadChildren: () => import('./modules/videos/videos.module').then((m) => m.VideosModule) },
+  { path: 'files', loadChildren: () => import('./modules/files/files.module').then((m) => m.FilesModule) },
+  { path: 'system', loadChildren: () => import('./modules/system/system.module').then((m) => m.SystemModule) },
+  // { path: '**', redirectTo: '' },
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes, {
+    preloadingStrategy: PreloadAllModules
+  })],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

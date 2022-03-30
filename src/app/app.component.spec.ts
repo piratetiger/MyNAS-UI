@@ -2,8 +2,8 @@ import { TestBed, async, ComponentFixture } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { AppComponent } from './app.component';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
-import { AppInfrastructureModule } from './infrastructure/app-infrastructure.module';
-import { AppService } from './infrastructure/services/app.service/app.service';
+import { SharedModule } from './shared/shared.module';
+import { AppService } from './shared/services/app.service/app.service';
 
 describe('AppComponent', () => {
     let component: AppComponent;
@@ -13,7 +13,7 @@ describe('AppComponent', () => {
         TestBed.configureTestingModule({
             imports: [
                 RouterTestingModule,
-                AppInfrastructureModule
+                SharedModule
             ],
             declarations: [
                 AppComponent
