@@ -2,7 +2,7 @@ import { Component, ViewEncapsulation, Input } from '@angular/core';
 import { DialogService } from 'primeng/dynamicdialog';
 import { NASModel } from 'src/app/shared/models/nas-model';
 import { ApiService } from 'src/app/shared/services/api.service/api.service';
-import { AppService } from 'src/app/shared/services/app.service/app.service';
+import { AppService } from 'src/app/shared/services/app.service';
 import { MediaListService } from '../media-list-services/media-list.service';
 import { DetailViewerComponent } from './detail-viewer/detail-viewer.component';
 

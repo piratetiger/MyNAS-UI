@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { UserRole } from 'src/app/shared/models/user-role';
-import { AppService } from 'src/app/shared/services/app.service/app.service';
+import { AppService } from 'src/app/shared/services/app.service';
 import { SystemComponent } from './system.component';
 import { UserProfileComponent } from './user-profile/user-profile.component';
 

@@ -42,7 +42,7 @@
               "node_modules/video.js/dist/video-js.min.css",
               "./node_modules/primeflex/primeflex.css",
               {
-                "input": "node_modules/primeng/resources/themes/saga-blue/theme.css",
+                "input": "node_modules/primeng/resources/themes/nova/theme.css",
                 "bundleName": "primeng.min"
               },
               {

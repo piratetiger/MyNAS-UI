@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { UserModel } from 'src/app/shared/models/user-model';
-import { AppService } from 'src/app/shared/services/app.service/app.service';
+import { AppService } from 'src/app/shared/services/app.service';
 import { ApiService } from 'src/app/shared/services/api.service/api.service';
 
 @Component({
@@ -15,10 +15,10 @@ export class UserProfileComponent {
     public confirmPassword = '';
 
     public get canSubmit(): boolean {
-        if ((this.newPassword !== this.confirmPassword) || (this.oldPassword.length === 0 && this.newPassword.length !== 0)) {
-            return false;
+        if (this.oldPassword.length && this.newPassword.length && this.newPassword === this.confirmPassword) {
+            return true;
         }
-        return true;
+        return false
     }
 
     constructor(private appService: AppService, private apiService: ApiService) {
