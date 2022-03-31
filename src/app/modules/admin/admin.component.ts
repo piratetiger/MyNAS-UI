@@ -3,10 +3,10 @@ import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
     selector: 'admin-main',
-    templateUrl: './admin-main.component.html',
-    styleUrls: ['./admin-main.component.scss']
+    templateUrl: './admin.component.html',
+    styleUrls: ['./admin.component.scss']
 })
-export class AdminMainComponent {
+export class AdminComponent {
     constructor(private router: Router, private route: ActivatedRoute) { }
 
     public navigate(path: string) {

@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { AppService } from 'src/app/shared/services/app.service/app.service';
+import { AppService } from 'src/app/shared/services/app.service';
 import { FilesComponent } from './files.component';
 
 const routes: Routes = [

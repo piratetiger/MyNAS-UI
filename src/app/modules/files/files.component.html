@@ -45,41 +45,41 @@
     <div class="content-view">
         <p-dataView #dataView [value]="fileList">
             <ng-template pTemplate="header">
-                <div class="p-grid">
-                    <div class="p-col-9">
+                <div class="grid">
+                    <div class="col-9">
                         <a href="javascript:void(0);" (click)="pathClick(null)">files</a>
                         <ng-container *ngFor="let path of pathList">
                             <span>></span>
                             <a href="javascript:void(0);" (click)="pathClick(path)">{{path.fileName}}</a>
                         </ng-container>
                     </div>
-                    <div class="p-col-3">
+                    <div class="col-3">
                         <div class="f-r">
                             <p-dataViewLayoutOptions></p-dataViewLayoutOptions>
                         </div>
                     </div>
                     <ng-container *ngIf="dataView.layout==='list'">
-                        <div class="p-col-5">Name</div>
-                        <div class="p-col-3">Owner</div>
-                        <div class="p-col-3">Created</div>
-                        <div class="p-col-1">Public</div>
+                        <div class="col-5">Name</div>
+                        <div class="col-3">Owner</div>
+                        <div class="col-3">Created</div>
+                        <div class="col-1">Public</div>
                     </ng-container>
                 </div>
             </ng-template>
 
             <ng-template let-file pTemplate="listItem">
-                <div class="p-col-5">
+                <div class="col-5">
                     <span>
                         <i [ngClass]="{'fas fa-folder': file.isFolder,'far fa-file-alt': !file.isFolder}"></i>
                         <a href="javascript:void(0);" (click)="fileClick(file)"> {{file.fileName}}</a>
                     </span>
                 </div>
-                <div class="p-col-3">{{file.owner}}</div>
-                <div class="p-col-3">{{file.date | date:'MM/dd/y HH:mm:ss'}}</div>
-                <div class="p-col-1">{{file.isPublic}}</div>
+                <div class="col-3">{{file.owner}}</div>
+                <div class="col-3">{{file.date | date:'MM/dd/y HH:mm:ss'}}</div>
+                <div class="col-1">{{file.isPublic}}</div>
             </ng-template>
             <ng-template let-file pTemplate="gridItem">
-                <div class="p-col-12 p-md-3 p-sm-6 grid-item">
+                <div class="col-12 p-md-3 p-sm-6 grid-item">
                     <div class="grid-item-icon">
                         <span>
                             <i [ngClass]="{'fas fa-folder': file.isFolder,'far fa-file-alt': !file.isFolder}"></i>

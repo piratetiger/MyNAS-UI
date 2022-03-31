@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule, PreloadAllModules } from '@angular/router';
 import { MainComponent } from './core/main/main.component';
 import { LoginComponent } from './core/login/login.component';
-import { AppService } from './shared/services/app.service/app.service';
+import { AppService } from 'src/app/shared/services/app.service';
 
 const routes: Routes = [
   { path: '', component: MainComponent, pathMatch: 'full', canActivate: [AppService] },

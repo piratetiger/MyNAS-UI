@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { MessageService } from 'primeng/api';
-import { AppService } from './shared/services/app.service/app.service';
+import { AppService } from 'src/app/shared/services/app.service';
 import { MessageModel, MessageType } from './shared/models/message-model';
 
 @Component({

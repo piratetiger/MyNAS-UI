@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
 import { DataResult } from 'src/app/shared/models/data-result';
 import { MessageModel, MessageType } from 'src/app/shared/models/message-model';
-import { AppService } from 'src/app/shared/services/app.service/app.service';
+import { AppService } from 'src/app/shared/services/app.service';
 
 @Injectable()
 export class MessageInterceptor implements HttpInterceptor {

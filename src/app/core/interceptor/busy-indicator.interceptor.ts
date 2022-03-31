@@ -4,7 +4,7 @@ import {
 } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
-import { AppService } from 'src/app/shared/services/app.service/app.service';
+import { AppService } from 'src/app/shared/services/app.service';
 
 @Injectable()
 export class BusyIndicatorInterceptor implements HttpInterceptor {

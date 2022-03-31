@@ -1,5 +1,5 @@
 import { Directive, TemplateRef, ViewContainerRef, OnInit } from '@angular/core';
-import { AppService } from '../../services/app.service/app.service';
+import { AppService } from 'src/app/shared/services/app.service';
 import { UserRole } from '../../models/user-role';
 
 @Directive({

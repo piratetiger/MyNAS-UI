@@ -1,6 +1,6 @@
 import { OnInit, Component } from '@angular/core';
 import { ApiService } from 'src/app/shared/services/api.service/api.service';
-import { AppService } from 'src/app/shared/services/app.service/app.service';
+import { AppService } from 'src/app/shared/services/app.service';
 import { ConfirmationService } from 'primeng/api';
 import { FileModel } from 'src/app/shared/models/file-model';
 

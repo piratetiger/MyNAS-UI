@@ -2,10 +2,12 @@ import { Injectable, EventEmitter } from '@angular/core';
 import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, UrlTree, Router, CanActivateChild } from '@angular/router';
 import { Observable } from 'rxjs';
 import * as store from 'store';
-import { MessageModel } from '../../models/message-model';
-import { UserModel } from '../../models/user-model';
+import { MessageModel } from '../models/message-model';
+import { UserModel } from '../models/user-model';
 
-@Injectable()
+@Injectable({
+    providedIn: 'root'
+})
 export class AppService implements CanActivate, CanActivateChild {
     public messages = new EventEmitter<MessageModel>();
     public showHeader = new EventEmitter<boolean>();
