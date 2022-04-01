@@ -5,10 +5,8 @@
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
-    "build:prod": "ng build --prod",
-    "test": "jest",
-    "lint": "ng lint",
-    "e2e": "ng e2e"
+    "build:prod": "ng build --configuration production",
+    "test": "jest"
   },
   "private": true,
   "dependencies": {
