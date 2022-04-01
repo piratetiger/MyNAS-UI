@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { AppComponentsModule } from './components/app-components.module';
+import { SharedComponentsModule } from './components/shared-components.module';
 import { AppPipesModule } from './pipes/app-pipes.module';
 import { AppServicesModule } from './services/app-services.module';
 
@@ -7,12 +7,12 @@ import { AppServicesModule } from './services/app-services.module';
     declarations: [
     ],
     imports: [
-        AppComponentsModule,
+        SharedComponentsModule,
         AppPipesModule,
         AppServicesModule,
     ],
     exports: [
-        AppComponentsModule,
+        SharedComponentsModule,
         AppPipesModule,
         AppServicesModule,
     ]

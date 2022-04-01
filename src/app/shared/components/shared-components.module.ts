@@ -1,5 +1,3 @@
-import { BrowserModule } from '@angular/platform-browser';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 
@@ -34,7 +32,7 @@ import { LightboxComponent } from './media-list/lightbox/lightbox.component';
 
 import { MediaListService } from './media-list/media-list-services/media-list.service';
 
-import { AppDirectivesModule } from '../directives/app-directives.module';
+import { SharedDirectivesModule } from '../directives/shared-directives.module';
 import { CommonModule } from '@angular/common';
 
 @NgModule({
@@ -70,7 +68,7 @@ import { CommonModule } from '@angular/common';
         DataViewModule,
         DeferModule,
 
-        AppDirectivesModule
+        SharedDirectivesModule
     ],
     exports: [
         MediaToolbarComponent,
@@ -99,7 +97,7 @@ import { CommonModule } from '@angular/common';
         DataViewModule,
         DeferModule,
 
-        AppDirectivesModule
+        SharedDirectivesModule
     ],
     providers: [
         DialogService,
@@ -111,4 +109,4 @@ import { CommonModule } from '@angular/common';
         MediaListService
     ]
 })
-export class AppComponentsModule { }
+export class SharedComponentsModule { }

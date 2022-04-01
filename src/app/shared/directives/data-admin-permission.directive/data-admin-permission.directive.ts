@@ -1,15 +1,23 @@
-import { Directive, TemplateRef, ViewContainerRef, OnInit } from '@angular/core';
+import { Directive, TemplateRef, ViewContainerRef } from '@angular/core';
 import { AppService } from 'src/app/shared/services/app.service';
+import { UserModel } from '../../models/user-model';
 import { UserRole } from '../../models/user-role';
+import { BaseDirective } from '../base/base.directive';
 
 @Directive({
     selector: '[dataAdminPermission]'
 })
-export class DataAdminPermissionDirective implements OnInit {
-    constructor(private template: TemplateRef<any>, private viewContainer: ViewContainerRef, private service: AppService) { }
+export class DataAdminPermissionDirective extends BaseDirective {
+    private user: UserModel;
 
-    ngOnInit() {
-        this.updateView();
+    constructor(private template: TemplateRef<any>, private viewContainer: ViewContainerRef, private service: AppService) {
+        super();
+        this.subscription.add(
+            this.service.refreshUserInfo$.subscribe(user => {
+                this.user = user;
+                this.updateView();
+            })
+        )
     }
 
     private updateView() {
@@ -21,10 +29,8 @@ export class DataAdminPermissionDirective implements OnInit {
     }
 
     private checkPermission(): boolean {
-        const user = this.service.userInfo;
-
-        if (user) {
-            const role = user.role;
+        if (this.user) {
+            const role = this.user.role;
             if ([UserRole.DataAdmin, UserRole.SystemAdmin].indexOf(role) > -1) {
                 return true;
             }

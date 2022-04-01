@@ -3,13 +3,14 @@ import { ApiService } from 'src/app/shared/services/api.service/api.service';
 import { AppService } from 'src/app/shared/services/app.service';
 import { ConfirmationService } from 'primeng/api';
 import { FileModel } from 'src/app/shared/models/file-model';
+import { BaseComponent } from 'src/app/shared/components/base/base.component';
 
 @Component({
     selector: 'app-files',
     templateUrl: './files.component.html',
     styleUrls: ['./files.component.scss'],
 })
-export class FilesComponent implements OnInit {
+export class FilesComponent extends BaseComponent implements OnInit {
     private _toolbarState: string;
     private _cate: string = null;
 
@@ -21,7 +22,7 @@ export class FilesComponent implements OnInit {
     public isPublic = true;
     public pathList: FileModel[] = [];
 
-    public userName = this.appService.userInfo.userName;
+    public userName;
 
     public get toolbarState(): string {
         return this._toolbarState;
@@ -36,7 +37,13 @@ export class FilesComponent implements OnInit {
         this.isPublic = true;
     }
 
-    constructor(private service: ApiService, private appService: AppService, private confirmationService: ConfirmationService) {
+    constructor(private api: ApiService, private service: AppService, private confirmationService: ConfirmationService) {
+        super();
+        this.subscription.add(
+            this.service.refreshUserInfo$.subscribe(user => {
+                this.userName = user?.userName;
+            })
+        )
     }
 
     ngOnInit(): void {
@@ -53,7 +60,7 @@ export class FilesComponent implements OnInit {
                 }
                 formData.set('isPublic', this.isPublic.toString());
                 formData.set('cate', this._cate);
-                this.service.fileService.uploadItem(formData).subscribe(d => {
+                this.api.fileService.uploadItem(formData).subscribe(d => {
                     this.uploadFileList = [];
                     if (d.data) {
                         this.refreshFiles();
@@ -72,7 +79,7 @@ export class FilesComponent implements OnInit {
                     cate: this._cate,
                     isPublic: this.isPublic
                 };
-                this.service.fileService.addItem(request).subscribe(d => {
+                this.api.fileService.addItem(request).subscribe(d => {
                     this.refreshFiles();
                 });
             }
@@ -100,12 +107,12 @@ export class FilesComponent implements OnInit {
             this.pathList.push(file);
             this.refreshFiles();
         } else {
-            window.open(`${this.service.serviceUrls.file.getItem}?name=${file.keyName}`, '_blank');
+            window.open(`${this.api.serviceUrls.file.getItem}?name=${file.keyName}`, '_blank');
         }
     }
 
     public refreshFiles() {
-        this.service.fileService.getItemList({
+        this.api.fileService.getItemList({
             cate: this._cate,
             owner: this.selectedOwners
         }).subscribe(d => {

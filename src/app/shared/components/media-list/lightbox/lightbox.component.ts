@@ -3,6 +3,7 @@ import { DialogService } from 'primeng/dynamicdialog';
 import { NASModel } from 'src/app/shared/models/nas-model';
 import { ApiService } from 'src/app/shared/services/api.service/api.service';
 import { AppService } from 'src/app/shared/services/app.service';
+import { BaseComponent } from '../../base/base.component';
 import { MediaListService } from '../media-list-services/media-list.service';
 import { DetailViewerComponent } from './detail-viewer/detail-viewer.component';
 
@@ -12,7 +13,7 @@ import { DetailViewerComponent } from './detail-viewer/detail-viewer.component';
     styleUrls: ['./lightbox.component.scss'],
     encapsulation: ViewEncapsulation.None
 })
-export class LightboxComponent {
+export class LightboxComponent extends BaseComponent {
     @Input() items: NASModel[] = [];
 
     public viewMode: boolean;
@@ -22,8 +23,13 @@ export class LightboxComponent {
         return this.mediaListService.selectedItems;
     }
 
-    constructor(private service: ApiService, private appService: AppService, private dialogService: DialogService, private mediaListService: MediaListService) {
-        this.userName = this.appService.userInfo.userName;
+    constructor(private api: ApiService, private service: AppService, private dialogService: DialogService, private mediaListService: MediaListService) {
+        super();
+        this.subscription.add(
+            this.service.refreshUserInfo$.subscribe(user => {
+                this.userName = user?.userName;
+            })
+        )
         this.viewMode = this.mediaListService.viewMode;
 
         this.mediaListService.viewModeChanged.subscribe(e => {
@@ -32,7 +38,7 @@ export class LightboxComponent {
     }
 
     public getImageUrl(item: NASModel) {
-        return `${this.service.serviceUrls[item.type].getItem}?thumb=true&name=${item.fileName}`;
+        return `${this.api.serviceUrls[item.type].getItem}?thumb=true&name=${item.fileName}`;
     }
 
     public itemClick(item: NASModel) {
