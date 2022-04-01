@@ -2,7 +2,7 @@ export enum MessageType {
     Success,
     Info,
     Warn,
-    Error
+    Error,
 }
 
 export class MessageModel {

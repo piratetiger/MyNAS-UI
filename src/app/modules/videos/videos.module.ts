@@ -5,13 +5,7 @@ import { SharedModule } from 'src/app/shared/shared.module';
 import { VideosRoutingModule } from './videos-routing.module';
 
 @NgModule({
-    declarations: [
-        VideosComponent,
-    ],
-    imports: [
-        CommonModule,
-        VideosRoutingModule,
-        SharedModule,
-    ],
+    declarations: [VideosComponent],
+    imports: [CommonModule, VideosRoutingModule, SharedModule],
 })
-export class VideosModule { }
+export class VideosModule {}

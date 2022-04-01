@@ -5,19 +5,23 @@ import { UserRole } from '../../models/user-role';
 import { BaseDirective } from '../base/base.directive';
 
 @Directive({
-    selector: '[systemAdminPermission]'
+    selector: '[systemAdminPermission]',
 })
 export class SystemAdminPermissionDirective extends BaseDirective {
     private user: UserModel;
 
-    constructor(private template: TemplateRef<any>, private viewContainer: ViewContainerRef, private service: AppService) {
+    constructor(
+        private template: TemplateRef<any>,
+        private viewContainer: ViewContainerRef,
+        private service: AppService
+    ) {
         super();
         this.subscription.add(
-            this.service.refreshUserInfo$.subscribe(user => {
+            this.service.refreshUserInfo$.subscribe((user) => {
                 this.user = user;
                 this.updateView();
             })
-        )
+        );
     }
 
     private updateView() {

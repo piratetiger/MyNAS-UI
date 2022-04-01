@@ -8,7 +8,7 @@ import { BaseComponent } from 'src/app/shared/components/base/base.component';
 @Component({
     selector: 'app-login',
     templateUrl: './login.component.html',
-    styleUrls: ['./login.component.scss']
+    styleUrls: ['./login.component.scss'],
 })
 export class LoginComponent extends BaseComponent implements OnDestroy {
     public username: string;
@@ -18,14 +18,18 @@ export class LoginComponent extends BaseComponent implements OnDestroy {
         return this.username && this.password;
     }
 
-    constructor(private api: ApiService, private service: AppService, private router: Router) {
+    constructor(
+        private api: ApiService,
+        private service: AppService,
+        private router: Router
+    ) {
         super();
         this.service.showFooter.emit(false);
     }
 
     ngOnDestroy() {
         this.service.showFooter.emit(true);
-        super.ngOnDestroy()
+        super.ngOnDestroy();
     }
 
     public keyPress(event) {
@@ -36,18 +40,20 @@ export class LoginComponent extends BaseComponent implements OnDestroy {
 
     public submit() {
         if (this.canSubmit) {
-            this.api.login({
-                username: this.username,
-                password: this.password
-            }).subscribe(d => {
-                var user = head(d.data);
-                if (user) {
-                    this.service.refreshUserInfo(user);
-                    this.router.navigate(['/']);
-                } else {
-                    this.password = '';
-                }
-            });
+            this.api
+                .login({
+                    username: this.username,
+                    password: this.password,
+                })
+                .subscribe((d) => {
+                    var user = head(d.data);
+                    if (user) {
+                        this.service.refreshUserInfo(user);
+                        this.router.navigate(['/']);
+                    } else {
+                        this.password = '';
+                    }
+                });
         }
     }
 }

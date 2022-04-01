@@ -8,21 +8,24 @@ import { AdminAddUserComponent } from './admin-add-user/admin-add-user.component
 @Component({
     selector: 'admin-user-config',
     templateUrl: './admin-user-config.component.html',
-    styleUrls: ['./admin-user-config.component.scss']
+    styleUrls: ['./admin-user-config.component.scss'],
 })
 export class AdminUserConfigComponent implements OnInit {
     public users: UserModel[];
-    public clonedUsers: { [s: string]: UserModel; } = {};
+    public clonedUsers: { [s: string]: UserModel } = {};
 
-    constructor(private service: AdminApiService, private dialogService: DialogService,
-        private confirmationService: ConfirmationService) { }
+    constructor(
+        private service: AdminApiService,
+        private dialogService: DialogService,
+        private confirmationService: ConfirmationService
+    ) {}
 
     ngOnInit(): void {
         this.refreshUsers();
     }
 
     public refreshUsers() {
-        this.service.getUserList().subscribe(d => {
+        this.service.getUserList().subscribe((d) => {
             this.users = [];
             if (d.data.length) {
                 this.users = d.data;
@@ -37,7 +40,7 @@ export class AdminUserConfigComponent implements OnInit {
             height: '70%',
         });
 
-        ref.onClose.subscribe(d => {
+        ref.onClose.subscribe((d) => {
             this.refreshUsers();
         });
     }
@@ -47,11 +50,12 @@ export class AdminUserConfigComponent implements OnInit {
     }
 
     public rowEditSave(user: UserModel) {
-        this.service.updateUser({
-            user: user,
-            password: user.password
-        }).subscribe(d => {
-        });
+        this.service
+            .updateUser({
+                user: user,
+                password: user.password,
+            })
+            .subscribe((d) => {});
     }
 
     public rowEditCancel(user: UserModel, index: number) {
@@ -63,13 +67,15 @@ export class AdminUserConfigComponent implements OnInit {
         this.confirmationService.confirm({
             message: 'Are you sure that you want to delete this user?',
             accept: () => {
-                this.service.deleteUser({
-                    user: user
-                }).subscribe(d => {
-                    this.users.splice(index, 1);
-                    delete this.clonedUsers[user.userName];
-                });
-            }
+                this.service
+                    .deleteUser({
+                        user: user,
+                    })
+                    .subscribe((d) => {
+                        this.users.splice(index, 1);
+                        delete this.clonedUsers[user.userName];
+                    });
+            },
         });
     }
 }

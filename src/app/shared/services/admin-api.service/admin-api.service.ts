@@ -12,22 +12,34 @@ import { LogModel } from '../../models/log-model';
 export class AdminApiService {
     public serviceUrls = serviceList;
 
-    constructor(private http: HttpClient) { }
+    constructor(private http: HttpClient) {}
 
     public getUserList(): Observable<DataResult<UserModel>> {
-        return this.http.post<DataResult<UserModel>>(serviceList.getUserList, {});
+        return this.http.post<DataResult<UserModel>>(
+            serviceList.getUserList,
+            {}
+        );
     }
 
     public createUser(body: any): Observable<DataResult<boolean>> {
-        return this.http.post<DataResult<boolean>>(serviceList.createUser, body);
+        return this.http.post<DataResult<boolean>>(
+            serviceList.createUser,
+            body
+        );
     }
 
     public updateUser(body: any): Observable<DataResult<boolean>> {
-        return this.http.post<DataResult<boolean>>(serviceList.updateUser, body);
+        return this.http.post<DataResult<boolean>>(
+            serviceList.updateUser,
+            body
+        );
     }
 
     public deleteUser(body: any): Observable<DataResult<boolean>> {
-        return this.http.post<DataResult<boolean>>(serviceList.deleteUser, body);
+        return this.http.post<DataResult<boolean>>(
+            serviceList.deleteUser,
+            body
+        );
     }
 
     public auditLog(body: any): Observable<DataResult<LogModel>> {

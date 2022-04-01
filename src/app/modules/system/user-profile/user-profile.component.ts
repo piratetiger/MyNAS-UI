@@ -7,7 +7,7 @@ import { BaseComponent } from 'src/app/shared/components/base/base.component';
 @Component({
     selector: 'app-user-profile',
     templateUrl: './user-profile.component.html',
-    styleUrls: ['./user-profile.component.scss']
+    styleUrls: ['./user-profile.component.scss'],
 })
 export class UserProfileComponent extends BaseComponent {
     public user: UserModel;
@@ -16,28 +16,34 @@ export class UserProfileComponent extends BaseComponent {
     public confirmPassword = '';
 
     public get canSubmit(): boolean {
-        if (this.oldPassword.length && this.newPassword.length && this.newPassword === this.confirmPassword) {
+        if (
+            this.oldPassword.length &&
+            this.newPassword.length &&
+            this.newPassword === this.confirmPassword
+        ) {
             return true;
         }
-        return false
+        return false;
     }
 
     constructor(private service: AppService, private api: ApiService) {
         super();
         this.subscription.add(
-            this.service.refreshUserInfo$.subscribe(user => {
+            this.service.refreshUserInfo$.subscribe((user) => {
                 this.user = user;
             })
-        )
+        );
     }
 
     public submit() {
-        this.api.userService.updateItem({
-            user: this.user,
-            password: this.newPassword,
-            oldPassword: this.oldPassword
-        }).subscribe(d => {
-            this.service.refreshUserInfo(this.user);
-        });
+        this.api.userService
+            .updateItem({
+                user: this.user,
+                password: this.newPassword,
+                oldPassword: this.oldPassword,
+            })
+            .subscribe((d) => {
+                this.service.refreshUserInfo(this.user);
+            });
     }
 }

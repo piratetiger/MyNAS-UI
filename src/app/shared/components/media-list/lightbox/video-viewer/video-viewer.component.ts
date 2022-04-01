@@ -1,4 +1,9 @@
-import { Component, ViewEncapsulation, AfterViewInit, ElementRef } from '@angular/core';
+import {
+    Component,
+    ViewEncapsulation,
+    AfterViewInit,
+    ElementRef,
+} from '@angular/core';
 import { ApiService } from 'src/app/shared/services/api.service/api.service';
 import { CommonViewerComponent } from '../common-viewer/common-viewer.component';
 import { NASModel } from 'src/app/shared/models/nas-model';
@@ -8,9 +13,12 @@ declare var videojs: any;
     selector: 'video-viewer',
     templateUrl: './video-viewer.component.html',
     styleUrls: ['./video-viewer.component.scss'],
-    encapsulation: ViewEncapsulation.None
+    encapsulation: ViewEncapsulation.None,
 })
-export class VideoViewerComponent extends CommonViewerComponent implements AfterViewInit {
+export class VideoViewerComponent
+    extends CommonViewerComponent
+    implements AfterViewInit
+{
     constructor(private service: ApiService, private element: ElementRef) {
         super();
     }

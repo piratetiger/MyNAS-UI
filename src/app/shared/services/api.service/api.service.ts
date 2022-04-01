@@ -27,30 +27,48 @@ export class ApiService {
     }
 
     public login(body: any): Observable<DataResult<UserModel>> {
-        return this.http.post<DataResult<UserModel>>(serviceList.user.login, body);
+        return this.http.post<DataResult<UserModel>>(
+            serviceList.user.login,
+            body
+        );
     }
 }
 
 class NASApiService<T> {
-    constructor(private http: HttpClient, private type: string) { }
+    constructor(private http: HttpClient, private type: string) {}
 
     public uploadItem(body: any): Observable<DataResult<boolean>> {
-        return this.http.post<DataResult<boolean>>(serviceList[this.type].uploadItem, body);
+        return this.http.post<DataResult<boolean>>(
+            serviceList[this.type].uploadItem,
+            body
+        );
     }
 
     public getItemList(body: any): Observable<DataResult<T>> {
-        return this.http.post<DataResult<T>>(serviceList[this.type].getItemList, body);
+        return this.http.post<DataResult<T>>(
+            serviceList[this.type].getItemList,
+            body
+        );
     }
 
     public deleteItem(body: any): Observable<DataResult<boolean>> {
-        return this.http.post<DataResult<boolean>>(serviceList[this.type].deleteItem, body);
+        return this.http.post<DataResult<boolean>>(
+            serviceList[this.type].deleteItem,
+            body
+        );
     }
 
     public updateItem(body: any): Observable<DataResult<boolean>> {
-        return this.http.post<DataResult<boolean>>(serviceList[this.type].updateItem, body);
+        return this.http.post<DataResult<boolean>>(
+            serviceList[this.type].updateItem,
+            body
+        );
     }
 
     public addItem(body: any): Observable<DataResult<boolean>> {
-        return this.http.post<DataResult<boolean>>(serviceList[this.type].addItem, body);
+        return this.http.post<DataResult<boolean>>(
+            serviceList[this.type].addItem,
+            body
+        );
     }
 }

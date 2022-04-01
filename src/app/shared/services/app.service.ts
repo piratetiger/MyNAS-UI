@@ -5,7 +5,7 @@ import { MessageModel } from '../models/message-model';
 import { UserModel } from '../models/user-model';
 
 @Injectable({
-    providedIn: 'root'
+    providedIn: 'root',
 })
 export class AppService {
     public messages = new EventEmitter<MessageModel>();

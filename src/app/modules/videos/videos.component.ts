@@ -7,7 +7,8 @@ import { MediaToolbarComponent } from 'src/app/shared/components/media-list/medi
     styleUrls: ['./videos.component.scss'],
 })
 export class VideosComponent implements AfterViewInit {
-    @ViewChild(MediaToolbarComponent, { static: false }) mediaToolbarComponent: MediaToolbarComponent;
+    @ViewChild(MediaToolbarComponent, { static: false })
+    mediaToolbarComponent: MediaToolbarComponent;
 
     ngAfterViewInit(): void {
         this.mediaToolbarComponent.refreshList();

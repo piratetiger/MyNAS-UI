@@ -37,13 +37,17 @@ export class FilesComponent extends BaseComponent implements OnInit {
         this.isPublic = true;
     }
 
-    constructor(private api: ApiService, private service: AppService, private confirmationService: ConfirmationService) {
+    constructor(
+        private api: ApiService,
+        private service: AppService,
+        private confirmationService: ConfirmationService
+    ) {
         super();
         this.subscription.add(
-            this.service.refreshUserInfo$.subscribe(user => {
+            this.service.refreshUserInfo$.subscribe((user) => {
                 this.userName = user?.userName;
             })
-        )
+        );
     }
 
     ngOnInit(): void {
@@ -60,13 +64,13 @@ export class FilesComponent extends BaseComponent implements OnInit {
                 }
                 formData.set('isPublic', this.isPublic.toString());
                 formData.set('cate', this._cate);
-                this.api.fileService.uploadItem(formData).subscribe(d => {
+                this.api.fileService.uploadItem(formData).subscribe((d) => {
                     this.uploadFileList = [];
                     if (d.data) {
                         this.refreshFiles();
                     }
                 });
-            }
+            },
         });
     }
 
@@ -77,12 +81,12 @@ export class FilesComponent extends BaseComponent implements OnInit {
                 const request = {
                     name: name,
                     cate: this._cate,
-                    isPublic: this.isPublic
+                    isPublic: this.isPublic,
                 };
-                this.api.fileService.addItem(request).subscribe(d => {
+                this.api.fileService.addItem(request).subscribe((d) => {
                     this.refreshFiles();
                 });
-            }
+            },
         });
     }
 
@@ -107,16 +111,21 @@ export class FilesComponent extends BaseComponent implements OnInit {
             this.pathList.push(file);
             this.refreshFiles();
         } else {
-            window.open(`${this.api.serviceUrls.file.getItem}?name=${file.keyName}`, '_blank');
+            window.open(
+                `${this.api.serviceUrls.file.getItem}?name=${file.keyName}`,
+                '_blank'
+            );
         }
     }
 
     public refreshFiles() {
-        this.api.fileService.getItemList({
-            cate: this._cate,
-            owner: this.selectedOwners
-        }).subscribe(d => {
-            this.fileList = d.data;
-        });
+        this.api.fileService
+            .getItemList({
+                cate: this._cate,
+                owner: this.selectedOwners,
+            })
+            .subscribe((d) => {
+                this.fileList = d.data;
+            });
     }
 }

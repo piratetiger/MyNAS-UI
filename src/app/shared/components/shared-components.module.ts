@@ -24,7 +24,11 @@ import { DataViewModule } from 'primeng/dataview';
 import { DeferModule } from 'primeng/defer';
 
 import { BusyIndicatorComponent } from './busy-indicator/busy-indicator.component';
-import { DynamicDialogConfig, DynamicDialogRef, DialogService } from 'primeng/dynamicdialog';
+import {
+    DynamicDialogConfig,
+    DynamicDialogRef,
+    DialogService,
+} from 'primeng/dynamicdialog';
 import { UserRoleDropdownComponent } from './user-role-dropdown/user-role-dropdown.component';
 import { MediaToolbarComponent } from './media-list/media-toolbar/media-toolbar.component';
 import { MediaListComponent } from './media-list/media-list/media-list.component';
@@ -68,7 +72,7 @@ import { CommonModule } from '@angular/common';
         DataViewModule,
         DeferModule,
 
-        SharedDirectivesModule
+        SharedDirectivesModule,
     ],
     exports: [
         MediaToolbarComponent,
@@ -97,7 +101,7 @@ import { CommonModule } from '@angular/common';
         DataViewModule,
         DeferModule,
 
-        SharedDirectivesModule
+        SharedDirectivesModule,
     ],
     providers: [
         DialogService,
@@ -106,7 +110,7 @@ import { CommonModule } from '@angular/common';
         MessageService,
         ConfirmationService,
 
-        MediaListService
-    ]
+        MediaListService,
+    ],
 })
-export class SharedComponentsModule { }
+export class SharedComponentsModule {}

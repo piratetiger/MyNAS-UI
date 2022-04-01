@@ -1,11 +1,11 @@
-import { Component, Input } from "@angular/core";
+import { Component, Input } from '@angular/core';
 import * as dayjs from 'dayjs';
-import { ApiService } from "src/app/shared/services/api.service/api.service";
-import { MediaListService } from "../media-list-services/media-list.service";
+import { ApiService } from 'src/app/shared/services/api.service/api.service';
+import { MediaListService } from '../media-list-services/media-list.service';
 import { groupBy } from 'lodash-es';
-import { NASModel } from "src/app/shared/models/nas-model";
-import { forkJoin } from "rxjs";
-import { DataResult } from "src/app/shared/models/data-result";
+import { NASModel } from 'src/app/shared/models/nas-model';
+import { forkJoin } from 'rxjs';
+import { DataResult } from 'src/app/shared/models/data-result';
 
 @Component({
     selector: 'media-list',
@@ -17,27 +17,32 @@ export class MediaListComponent {
 
     public itemGroup: any[];
 
-    constructor(private mediaListService: MediaListService, private service: ApiService) {
-        this.mediaListService.refreshMediaList.subscribe(data => {
+    constructor(
+        private mediaListService: MediaListService,
+        private service: ApiService
+    ) {
+        this.mediaListService.refreshMediaList.subscribe((data) => {
             this.refreshList(data);
-        })
+        });
     }
 
     public refreshList(data) {
-        const callList = this.type.split(',').map(type => {
+        const callList = this.type.split(',').map((type) => {
             return this.service[type + 'Service'].getItemList(data);
-        })
+        });
 
         forkJoin(callList).subscribe((d: DataResult<NASModel>[]) => {
             this.itemGroup = [];
-            const data = d.map(d => d.data).flatMap(d => d);
+            const data = d.map((d) => d.data).flatMap((d) => d);
 
             if (data.length) {
-                const groups = groupBy(data, (i: NASModel) => dayjs(i.date).format('YYYY MM DD'));
+                const groups = groupBy(data, (i: NASModel) =>
+                    dayjs(i.date).format('YYYY MM DD')
+                );
                 for (const key of Object.keys(groups)) {
                     this.itemGroup.push({
                         date: key,
-                        items: groups[key].reverse()
+                        items: groups[key].reverse(),
                     });
                 }
             }

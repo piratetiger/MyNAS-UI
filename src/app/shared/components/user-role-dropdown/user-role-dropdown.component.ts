@@ -10,9 +10,9 @@ import { NG_VALUE_ACCESSOR, ControlValueAccessor } from '@angular/forms';
         {
             provide: NG_VALUE_ACCESSOR,
             useExisting: forwardRef(() => UserRoleDropdownComponent),
-            multi: true
-        }
-    ]
+            multi: true,
+        },
+    ],
 })
 export class UserRoleDropdownComponent implements ControlValueAccessor {
     public roles = [];
@@ -29,9 +29,8 @@ export class UserRoleDropdownComponent implements ControlValueAccessor {
         return this._value;
     }
 
-    private onTouchedCallback = () => { };
-    private onChangeCallback = (v) => { };
-
+    private onTouchedCallback = () => {};
+    private onChangeCallback = (v) => {};
 
     constructor() {
         for (const key of Object.keys(UserRole)) {

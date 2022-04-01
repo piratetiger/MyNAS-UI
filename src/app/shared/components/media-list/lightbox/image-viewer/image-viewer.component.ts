@@ -7,10 +7,9 @@ import { NASModel } from 'src/app/shared/models/nas-model';
     selector: 'image-viewer',
     templateUrl: './image-viewer.component.html',
     styleUrls: ['./image-viewer.component.scss'],
-    encapsulation: ViewEncapsulation.None
+    encapsulation: ViewEncapsulation.None,
 })
 export class ImageViewerComponent extends CommonViewerComponent {
-
     constructor(private service: ApiService) {
         super();
     }

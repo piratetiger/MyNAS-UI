@@ -1,5 +1,5 @@
-import { EventEmitter, Injectable } from "@angular/core";
-import { NASModel } from "src/app/shared/models/nas-model";
+import { EventEmitter, Injectable } from '@angular/core';
+import { NASModel } from 'src/app/shared/models/nas-model';
 
 @Injectable()
 export class MediaListService {
@@ -10,7 +10,7 @@ export class MediaListService {
     public refreshMediaList = new EventEmitter<any>();
 
     public get selectedItems(): NASModel[] {
-        return this._selectedItems
+        return this._selectedItems;
     }
 
     public set selectedItems(value: NASModel[]) {
@@ -26,7 +26,7 @@ export class MediaListService {
     }
 
     constructor() {
-        this.viewModeChanged.subscribe(e => {
+        this.viewModeChanged.subscribe((e) => {
             this._selectedItems = [];
             this._viewMode = e;
         });

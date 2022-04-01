@@ -5,19 +5,23 @@ import { UserRole } from '../../models/user-role';
 import { BaseDirective } from '../base/base.directive';
 
 @Directive({
-    selector: '[userPermission]'
+    selector: '[userPermission]',
 })
 export class UserPermissionDirective extends BaseDirective {
     private user: UserModel;
 
-    constructor(private template: TemplateRef<any>, private viewContainer: ViewContainerRef, private service: AppService) {
+    constructor(
+        private template: TemplateRef<any>,
+        private viewContainer: ViewContainerRef,
+        private service: AppService
+    ) {
         super();
         this.subscription.add(
-            this.service.refreshUserInfo$.subscribe(user => {
+            this.service.refreshUserInfo$.subscribe((user) => {
                 this.user = user;
                 this.updateView();
             })
-        )
+        );
     }
 
     private updateView() {
@@ -31,7 +35,13 @@ export class UserPermissionDirective extends BaseDirective {
     private checkPermission(): boolean {
         if (this.user) {
             const role = this.user.role;
-            if ([UserRole.User, UserRole.DataAdmin, UserRole.SystemAdmin].indexOf(role) > -1) {
+            if (
+                [
+                    UserRole.User,
+                    UserRole.DataAdmin,
+                    UserRole.SystemAdmin,
+                ].indexOf(role) > -1
+            ) {
                 return true;
             }
         }

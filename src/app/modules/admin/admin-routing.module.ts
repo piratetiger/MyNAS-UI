@@ -8,34 +8,34 @@ import { UserRole } from 'src/app/shared/models/user-role';
 
 const routes: Routes = [
     {
-        path: '', 
-        component: AdminComponent, 
-        pathMatch: 'full', 
-        canActivate: [GuardService], 
+        path: '',
+        component: AdminComponent,
+        pathMatch: 'full',
+        canActivate: [GuardService],
         data: {
-            role: [UserRole.SystemAdmin]
+            role: [UserRole.SystemAdmin],
         },
     },
     {
-        path: 'users', 
-        component: AdminUserConfigComponent, 
-        canActivate: [GuardService], 
+        path: 'users',
+        component: AdminUserConfigComponent,
+        canActivate: [GuardService],
         data: {
-            role: [UserRole.SystemAdmin]
+            role: [UserRole.SystemAdmin],
         },
     },
     {
-        path: 'logs', 
-        component: AdminLogComponent, 
-        canActivate: [GuardService], 
+        path: 'logs',
+        component: AdminLogComponent,
+        canActivate: [GuardService],
         data: {
-            role: [UserRole.SystemAdmin]
+            role: [UserRole.SystemAdmin],
         },
     },
-]
+];
 
 @NgModule({
     imports: [RouterModule.forChild(routes)],
-    exports: [RouterModule]
+    exports: [RouterModule],
 })
-export class AdminRoutingModule { }
+export class AdminRoutingModule {}

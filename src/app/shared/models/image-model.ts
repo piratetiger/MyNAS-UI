@@ -1,4 +1,3 @@
-import { NASModel } from "./nas-model";
+import { NASModel } from './nas-model';
 
-export class ImageModel extends NASModel {
-}
+export class ImageModel extends NASModel {}

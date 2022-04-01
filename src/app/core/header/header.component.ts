@@ -13,10 +13,10 @@ export class HeaderComponent extends BaseComponent {
     constructor(private service: AppService, private router: Router) {
         super();
         this.subscription.add(
-            this.service.refreshUserInfo$.subscribe(user => {
+            this.service.refreshUserInfo$.subscribe((user) => {
                 this.user = user;
             })
-        )
+        );
     }
 
     public logout() {

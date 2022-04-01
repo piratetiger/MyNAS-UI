@@ -6,7 +6,7 @@ import { AdminApiService } from 'src/app/shared/services/admin-api.service/admin
 @Component({
     selector: 'admin-log',
     templateUrl: './admin-log.component.html',
-    styleUrls: ['./admin-log.component.scss']
+    styleUrls: ['./admin-log.component.scss'],
 })
 export class AdminLogComponent {
     public auditLogs: LogModel[];
@@ -27,19 +27,23 @@ export class AdminLogComponent {
 
     public refreshLogs() {
         if (this.logType === this.logTypes[0].value) {
-            this.service.auditLog({
-                start: dayjs(this.startDate).format('YYYYMMDD'),
-                end: dayjs(this.endDate).format('YYYYMMDD')
-            }).subscribe(d => {
-                this.auditLogs = d.data;
-            });
+            this.service
+                .auditLog({
+                    start: dayjs(this.startDate).format('YYYYMMDD'),
+                    end: dayjs(this.endDate).format('YYYYMMDD'),
+                })
+                .subscribe((d) => {
+                    this.auditLogs = d.data;
+                });
         } else {
-            this.service.errorLog({
-                start: dayjs(this.startDate).format('YYYYMMDD'),
-                end: dayjs(this.endDate).format('YYYYMMDD')
-            }).subscribe(d => {
-                this.errorLogs = d.data;
-            });
+            this.service
+                .errorLog({
+                    start: dayjs(this.startDate).format('YYYYMMDD'),
+                    end: dayjs(this.endDate).format('YYYYMMDD'),
+                })
+                .subscribe((d) => {
+                    this.errorLogs = d.data;
+                });
         }
     }
 }

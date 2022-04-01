@@ -15,14 +15,8 @@ import { AdminLogComponent } from './admin-log/admin-log.component';
         AdminComponent,
         AdminUserConfigComponent,
         AdminAddUserComponent,
-        AdminLogComponent
+        AdminLogComponent,
     ],
-    imports: [
-        CommonModule,
-        FormsModule,
-
-        AdminRoutingModule,
-        SharedModule,
-    ]
+    imports: [CommonModule, FormsModule, AdminRoutingModule, SharedModule],
 })
-export class AdminModule { }
+export class AdminModule {}

@@ -4,22 +4,17 @@ import { UserPermissionDirective } from './user-permission.directive/user-permis
 import { DataAdminPermissionDirective } from './data-admin-permission.directive/data-admin-permission.directive';
 import { SystemAdminPermissionDirective } from './system-admin-permission.directive/system-admin-permission.directive';
 
-
 @NgModule({
     declarations: [
         BaseDirective,
         UserPermissionDirective,
         DataAdminPermissionDirective,
-        SystemAdminPermissionDirective
-    ],
-    imports: [
+        SystemAdminPermissionDirective,
     ],
     exports: [
         UserPermissionDirective,
         DataAdminPermissionDirective,
-        SystemAdminPermissionDirective
-    ],
-    providers: [
+        SystemAdminPermissionDirective,
     ],
 })
-export class SharedDirectivesModule { }
+export class SharedDirectivesModule {}
