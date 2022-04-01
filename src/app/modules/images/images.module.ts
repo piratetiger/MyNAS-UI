@@ -5,13 +5,7 @@ import { SharedModule } from 'src/app/shared/shared.module';
 import { ImagesRoutingModule } from './images-routing.module';
 
 @NgModule({
-    declarations: [
-        ImagesComponent,
-    ],
-    imports: [
-        CommonModule,
-        ImagesRoutingModule,
-        SharedModule,
-    ],
+    declarations: [ImagesComponent],
+    imports: [CommonModule, ImagesRoutingModule, SharedModule],
 })
-export class ImagesModule { }
+export class ImagesModule {}

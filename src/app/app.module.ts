@@ -18,27 +18,39 @@ import { MessageInterceptor } from './core/interceptor/message.interceptor';
 import { BusyIndicatorInterceptor } from './core/interceptor/busy-indicator.interceptor';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    HeaderComponent,
-    FooterComponent,
-    MainComponent,
-    LoginComponent,
-  ],
-  imports: [
-    BrowserModule,
-    BrowserAnimationsModule,
-    FormsModule,
-    HttpClientModule,
+    declarations: [
+        AppComponent,
+        HeaderComponent,
+        FooterComponent,
+        MainComponent,
+        LoginComponent,
+    ],
+    imports: [
+        BrowserModule,
+        BrowserAnimationsModule,
+        FormsModule,
+        HttpClientModule,
 
-    AppRoutingModule,
-    SharedModule,
-  ],
-  providers: [
-    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
-    { provide: HTTP_INTERCEPTORS, useClass: MessageInterceptor, multi: true },
-    { provide: HTTP_INTERCEPTORS, useClass: BusyIndicatorInterceptor, multi: true },
-  ],
-  bootstrap: [AppComponent]
+        AppRoutingModule,
+        SharedModule,
+    ],
+    providers: [
+        {
+            provide: HTTP_INTERCEPTORS,
+            useClass: AuthInterceptor,
+            multi: true,
+        },
+        {
+            provide: HTTP_INTERCEPTORS,
+            useClass: MessageInterceptor,
+            multi: true,
+        },
+        {
+            provide: HTTP_INTERCEPTORS,
+            useClass: BusyIndicatorInterceptor,
+            multi: true,
+        },
+    ],
+    bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

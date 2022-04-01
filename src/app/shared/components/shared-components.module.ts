@@ -1,5 +1,3 @@
-import { BrowserModule } from '@angular/platform-browser';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 
@@ -26,7 +24,11 @@ import { DataViewModule } from 'primeng/dataview';
 import { DeferModule } from 'primeng/defer';
 
 import { BusyIndicatorComponent } from './busy-indicator/busy-indicator.component';
-import { DynamicDialogConfig, DynamicDialogRef, DialogService } from 'primeng/dynamicdialog';
+import {
+    DynamicDialogConfig,
+    DynamicDialogRef,
+    DialogService,
+} from 'primeng/dynamicdialog';
 import { UserRoleDropdownComponent } from './user-role-dropdown/user-role-dropdown.component';
 import { MediaToolbarComponent } from './media-list/media-toolbar/media-toolbar.component';
 import { MediaListComponent } from './media-list/media-list/media-list.component';
@@ -34,7 +36,7 @@ import { LightboxComponent } from './media-list/lightbox/lightbox.component';
 
 import { MediaListService } from './media-list/media-list-services/media-list.service';
 
-import { AppDirectivesModule } from '../directives/app-directives.module';
+import { SharedDirectivesModule } from '../directives/shared-directives.module';
 import { CommonModule } from '@angular/common';
 
 @NgModule({
@@ -70,7 +72,7 @@ import { CommonModule } from '@angular/common';
         DataViewModule,
         DeferModule,
 
-        AppDirectivesModule
+        SharedDirectivesModule,
     ],
     exports: [
         MediaToolbarComponent,
@@ -99,7 +101,7 @@ import { CommonModule } from '@angular/common';
         DataViewModule,
         DeferModule,
 
-        AppDirectivesModule
+        SharedDirectivesModule,
     ],
     providers: [
         DialogService,
@@ -108,7 +110,7 @@ import { CommonModule } from '@angular/common';
         MessageService,
         ConfirmationService,
 
-        MediaListService
-    ]
+        MediaListService,
+    ],
 })
-export class AppComponentsModule { }
+export class SharedComponentsModule {}

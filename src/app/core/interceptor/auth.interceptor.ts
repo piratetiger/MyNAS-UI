@@ -1,6 +1,10 @@
 import { Injectable } from '@angular/core';
 import {
-    HttpEvent, HttpInterceptor, HttpHandler, HttpRequest, HttpErrorResponse
+    HttpEvent,
+    HttpInterceptor,
+    HttpHandler,
+    HttpRequest,
+    HttpErrorResponse,
 } from '@angular/common/http';
 
 import { Observable, throwError } from 'rxjs';
@@ -11,27 +15,36 @@ import { AppService } from 'src/app/shared/services/app.service';
 
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {
+    private user: UserModel;
 
-    constructor(private router: Router, private appService: AppService) { }
+    constructor(private router: Router, private service: AppService) {
+        this.service.refreshUserInfo$.subscribe((user) => {
+            this.user = user;
+        });
+    }
 
-    intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-        const userInfo: UserModel = this.appService.userInfo;
+    intercept(
+        req: HttpRequest<any>,
+        next: HttpHandler
+    ): Observable<HttpEvent<any>> {
         let headers = req.headers;
-        if (userInfo && userInfo.userName && userInfo.token) {
-            headers = headers.set('x-login-token', userInfo.token)
-                .set('x-login-user', userInfo.userName);
+        if (this.user?.userName && this.user?.token) {
+            headers = headers
+                .set('x-login-token', this.user.token)
+                .set('x-login-user', this.user.userName);
         }
 
         return next.handle(req.clone({ headers: headers })).pipe(
-            catchError(err => {
+            catchError((err) => {
                 if (err instanceof HttpErrorResponse) {
                     if (err.status === 401 || err.status === 403) {
-                        this.appService.userInfo = null;
+                        this.service.refreshUserInfo(null);
                         this.router.navigate(['/login']);
                     }
-                    this.appService.busyIndicator.emit(false);
+                    this.service.busyIndicator.emit(false);
                 }
                 return throwError(err);
-            }));
+            })
+        );
     }
 }

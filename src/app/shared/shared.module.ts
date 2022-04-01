@@ -1,20 +1,11 @@
 import { NgModule } from '@angular/core';
-import { AppComponentsModule } from './components/app-components.module';
+import { SharedComponentsModule } from './components/shared-components.module';
 import { AppPipesModule } from './pipes/app-pipes.module';
 import { AppServicesModule } from './services/app-services.module';
 
 @NgModule({
-    declarations: [
-    ],
-    imports: [
-        AppComponentsModule,
-        AppPipesModule,
-        AppServicesModule,
-    ],
-    exports: [
-        AppComponentsModule,
-        AppPipesModule,
-        AppServicesModule,
-    ]
+    declarations: [],
+    imports: [SharedComponentsModule, AppPipesModule, AppServicesModule],
+    exports: [SharedComponentsModule, AppPipesModule, AppServicesModule],
 })
-export class SharedModule { }
+export class SharedModule {}

@@ -5,13 +5,7 @@ import { SharedModule } from 'src/app/shared/shared.module';
 import { FilesRoutingModule } from './files-routing.module';
 
 @NgModule({
-    declarations: [
-        FilesComponent,
-    ],
-    imports: [
-        CommonModule,
-        FilesRoutingModule,
-        SharedModule,
-    ],
+    declarations: [FilesComponent],
+    imports: [CommonModule, FilesRoutingModule, SharedModule],
 })
-export class FilesModule { }
+export class FilesModule {}

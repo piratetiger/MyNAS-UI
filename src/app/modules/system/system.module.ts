@@ -8,15 +8,7 @@ import { SystemRoutingModule } from './system-routing.module';
 import { UserProfileComponent } from './user-profile/user-profile.component';
 
 @NgModule({
-    declarations: [
-        SystemComponent,
-        UserProfileComponent
-    ],
-    imports: [
-        CommonModule,
-        FormsModule,
-        SystemRoutingModule,
-        SharedModule,
-    ],
+    declarations: [SystemComponent, UserProfileComponent],
+    imports: [CommonModule, FormsModule, SystemRoutingModule, SharedModule],
 })
-export class SystemModule { }
+export class SystemModule {}

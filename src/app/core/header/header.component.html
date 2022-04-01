@@ -4,7 +4,7 @@
             <span>MyNAS</span>
         </a>
         <span *ngIf="user" class="app-header-user">
-            <span>{{user.nickName?user.nickName:user.userName}}</span>
+            <span>{{user?.nickName?user.nickName:user?.userName}}</span>
             <span class="app-header-logout">
                 [<a href="javascript: void(0)" (click)="logout()">logout</a>]
             </span>

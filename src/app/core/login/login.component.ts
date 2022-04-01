@@ -3,13 +3,14 @@ import { Router } from '@angular/router';
 import { ApiService } from 'src/app/shared/services/api.service/api.service';
 import { AppService } from 'src/app/shared/services/app.service';
 import { head } from 'lodash-es';
+import { BaseComponent } from 'src/app/shared/components/base/base.component';
 
 @Component({
     selector: 'app-login',
     templateUrl: './login.component.html',
-    styleUrls: ['./login.component.scss']
+    styleUrls: ['./login.component.scss'],
 })
-export class LoginComponent implements OnDestroy {
+export class LoginComponent extends BaseComponent implements OnDestroy {
     public username: string;
     public password: string;
 
@@ -17,12 +18,18 @@ export class LoginComponent implements OnDestroy {
         return this.username && this.password;
     }
 
-    constructor(private service: ApiService, private appService: AppService, private router: Router) {
-        this.appService.showFooter.emit(false);
+    constructor(
+        private api: ApiService,
+        private service: AppService,
+        private router: Router
+    ) {
+        super();
+        this.service.showFooter.emit(false);
     }
 
     ngOnDestroy() {
-        this.appService.showFooter.emit(true);
+        this.service.showFooter.emit(true);
+        super.ngOnDestroy();
     }
 
     public keyPress(event) {
@@ -33,18 +40,20 @@ export class LoginComponent implements OnDestroy {
 
     public submit() {
         if (this.canSubmit) {
-            this.service.login({
-                username: this.username,
-                password: this.password
-            }).subscribe(d => {
-                var user = head(d.data);
-                if (user) {
-                    this.appService.userInfo = user;
-                    this.router.navigateByUrl('/');
-                } else {
-                    this.password = '';
-                }
-            });
+            this.api
+                .login({
+                    username: this.username,
+                    password: this.password,
+                })
+                .subscribe((d) => {
+                    var user = head(d.data);
+                    if (user) {
+                        this.service.refreshUserInfo(user);
+                        this.router.navigate(['/']);
+                    } else {
+                        this.password = '';
+                    }
+                });
         }
     }
 }

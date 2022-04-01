@@ -2,15 +2,7 @@ import { NgModule } from '@angular/core';
 import { UserRolePipe } from './user-role/user-role.pipe';
 
 @NgModule({
-    declarations: [
-        UserRolePipe
-    ],
-    imports: [
-    ],
-    exports: [
-        UserRolePipe,
-    ],
-    providers: [
-    ],
+    declarations: [UserRolePipe],
+    exports: [UserRolePipe],
 })
-export class AppPipesModule { }
+export class AppPipesModule {}
