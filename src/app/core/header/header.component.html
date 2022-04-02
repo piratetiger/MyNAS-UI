@@ -1,13 +1,30 @@
-<div class="app-header">
-    <div class="app-header-content">
-        <a routerLink="/" class="app-header-title">
-            <span>MyNAS</span>
-        </a>
-        <span *ngIf="user" class="app-header-user">
-            <span>{{user?.nickName?user.nickName:user?.userName}}</span>
-            <span class="app-header-logout">
-                [<a href="javascript: void(0)" (click)="logout()">logout</a>]
-            </span>
-        </span>
+<div
+    class="app-header flex flex-column justify-content-center"
+    style="height: 50px"
+>
+    <div class="app-header-content grid grid-nogutter mx-4">
+        <div class="col">
+            <a routerLink="/">
+                <span class="font-bold text-white text-2xl">MyNAS</span>
+            </a>
+        </div>
+        <div class="col">
+            <div *ngIf="user" class="text-right">
+                <span class="text-gray-600 text-lg">{{
+                    user?.nickName ? user.nickName : user?.userName
+                }}</span>
+                <span class="text-white">
+                    [
+                    <a
+                        href="javascript: void(0)"
+                        class="underline text-white"
+                        (click)="logout()"
+                    >
+                        logout
+                    </a>
+                    ]
+                </span>
+            </div>
+        </div>
     </div>
 </div>
