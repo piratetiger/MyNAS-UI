@@ -12,18 +12,18 @@ import { AppService } from 'src/app/shared/services/app.service';
 
 @Injectable()
 export class BusyIndicatorInterceptor implements HttpInterceptor {
-    constructor(private appService: AppService) {}
+    constructor(private service: AppService) {}
 
     intercept(
         req: HttpRequest<any>,
         next: HttpHandler
     ): Observable<HttpEvent<any>> {
-        this.appService.busyIndicator.emit(true);
+        this.service.increaseBusyIndicator();
 
         return next.handle(req).pipe(
             tap((evt) => {
                 if (evt instanceof HttpResponseBase) {
-                    this.appService.busyIndicator.emit(false);
+                    this.service.decreaseBusyIndicator();
                 }
             })
         );
