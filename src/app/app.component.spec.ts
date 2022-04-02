@@ -3,7 +3,7 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { AppComponent } from './app.component';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { SharedModule } from './shared/shared.module';
-import { AppService } from './shared/services/app.service/app.service';
+import { AppService } from './shared/services/app.service';
 
 describe('AppComponent', () => {
     let component: AppComponent;

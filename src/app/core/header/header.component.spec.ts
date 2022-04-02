@@ -3,9 +3,9 @@ import { SharedModule } from 'src/app/shared/shared.module';
 import { NO_ERRORS_SCHEMA, Component } from '@angular/core';
 import { HeaderComponent } from './header.component';
 import { RouterTestingModule } from '@angular/router/testing';
-import { AppService } from 'src/app/shared/services/app.service/app.service';
 import { UserModel } from 'src/app/shared/models/user-model';
 import { Router } from '@angular/router';
+import { AppService } from 'src/app/shared/services/app.service';
 
 @Component({
     template: ''
