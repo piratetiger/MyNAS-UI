@@ -1,129 +1,109 @@
 html {
-  font-size: 14px;
+    font-size: 14px;
 }
 
 body {
-  margin: 0;
+    margin: 0;
 
-  a {
-    color: #007ad9;
-    text-decoration: none
-  }
+    a {
+        color: #007ad9;
+        text-decoration: none;
+    }
 
-  a:hover {
-    color: #116fbf
-  }
+    a:hover {
+        color: #116fbf;
+    }
 
-  a:active {
-    color: #005b9f
-  }
+    a:active {
+        color: #005b9f;
+    }
 }
 
-.p-r {
-  position: relative;
+.float-right {
+    float: right;
 }
 
-.p-a {
-  position: absolute;
-}
-
-.p-f {
-  position: fixed;
-}
-
-.f-r {
-  float: right;
-}
-
-.f-l {
-  float: left;
-}
-
-.c-b {
-  clear: both;
+.float-left {
+    float: left;
 }
 
 .common-center {
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  margin: auto;
-}
-
-.content-toolbar {
-  margin: 5px;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
 }
 
 .content-view {
-  margin-top: 5px;
+    margin-top: 5px;
 }
 
 //primeng
 .p-dialog-content {
-  height: 100%;
+    height: 100%;
 }
 
 p-calendar input {
-  width: 100px;
+    width: 100px;
 }
 
 .p-multiselect {
-  div.p-multiselect-panel {
-    min-width: 220px;
-  }
+    div.p-multiselect-panel {
+        min-width: 220px;
+    }
 }
 
-.p-dataview.p-dataview-list .p-dataview-content>.p-grid>div {
-  padding: 0.5rem 0.75rem;
+.p-dataview.p-dataview-list .p-dataview-content > .p-grid > div {
+    padding: 0.5rem 0.75rem;
 }
 
 p-fieldset fieldset {
-  legend {
-    background: none !important;
-    border: none !important;
-  }
+    legend {
+        background: none !important;
+        border: none !important;
+    }
 
-  .p-fieldset-content {
-    padding: 0 !important;
-  }
+    .p-fieldset-content {
+        padding: 0 !important;
+    }
 }
 
 .app-icons {
-  width: 80%;
-  height: 90%;
+    width: 80%;
+    height: 90%;
 
-  .icons-item {
-    float: left;
-    box-sizing: border-box;
-    margin: 13px;
-    width: 118px;
-    cursor: pointer;
+    .icons-item {
+        float: left;
+        box-sizing: border-box;
+        margin: 13px;
+        width: 118px;
+        cursor: pointer;
 
-    .icons-item-container {
-      text-align: center;
-      vertical-align: middle;
+        .icons-item-container {
+            text-align: center;
+            vertical-align: middle;
 
-      i {
-        font-size: 90px;
-      }
+            i {
+                font-size: 90px;
+            }
 
-      div {
-        font-size: 19px;
-        font-weight: bold;
-      }
+            div {
+                font-size: 19px;
+                font-weight: bold;
+            }
 
-      &:hover {
-        i {
-          font-size: 95px;
+            &:hover {
+                i {
+                    font-size: 95px;
+                }
+
+                div {
+                    font-size: 21px;
+                    font-weight: bold;
+                }
+            }
         }
-
-        div {
-          font-size: 21px;
-          font-weight: bold;
-        }
-      }
     }
-  }
 }
