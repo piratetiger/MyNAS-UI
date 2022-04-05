@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
-import { AdminApiService } from 'src/app/shared/services/admin-api.service/admin-api.service';
 import { UserModel } from 'src/app/shared/models/user-model';
 import { UserRole } from 'src/app/shared/models/user-role';
 import { DynamicDialogRef } from 'primeng/dynamicdialog';
+import { AdminApiService } from '../../services/admin-api.service';
 
 @Component({
     selector: 'admin-add-user',
@@ -12,13 +12,13 @@ import { DynamicDialogRef } from 'primeng/dynamicdialog';
 export class AdminAddUserComponent {
     public user: UserModel;
 
-    constructor(private service: AdminApiService, private ref: DynamicDialogRef) {
+    constructor(private adminApi: AdminApiService, private ref: DynamicDialogRef) {
         this.user = new UserModel();
         this.user.role = UserRole.User;
     }
 
     public submit() {
-        this.service.createUser({
+        this.adminApi.createUser({
             user: this.user,
             password: this.user.password
         }).subscribe(d => {

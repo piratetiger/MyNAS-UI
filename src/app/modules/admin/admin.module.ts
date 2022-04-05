@@ -9,6 +9,7 @@ import { AdminUserConfigComponent } from './admin-user-config/admin-user-config.
 import { AdminAddUserComponent } from './admin-user-config/admin-add-user/admin-add-user.component';
 import { AdminComponent } from './admin.component';
 import { AdminLogComponent } from './admin-log/admin-log.component';
+import { AdminApiService } from './services/admin-api.service';
 
 @NgModule({
     declarations: [
@@ -18,5 +19,6 @@ import { AdminLogComponent } from './admin-log/admin-log.component';
         AdminLogComponent,
     ],
     imports: [CommonModule, FormsModule, AdminRoutingModule, SharedModule],
+    providers: [AdminApiService],
 })
 export class AdminModule {}

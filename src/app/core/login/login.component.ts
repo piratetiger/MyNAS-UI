@@ -1,6 +1,6 @@
 import { Component, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
-import { ApiService } from 'src/app/shared/services/api.service/api.service';
+import { ApiService } from 'src/app/shared/services/api.service';
 import { AppService } from 'src/app/shared/services/app.service';
 import { head } from 'lodash-es';
 import { BaseComponent } from 'src/app/shared/components/base/base.component';

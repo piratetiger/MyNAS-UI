@@ -9,7 +9,7 @@ import {
     ViewChildren,
 } from '@angular/core';
 import * as dayjs from 'dayjs';
-import { ApiService } from 'src/app/shared/services/api.service/api.service';
+import { ApiService } from 'src/app/shared/services/api.service';
 import { MediaListService } from '../media-list-services/media-list.service';
 import { groupBy, take } from 'lodash-es';
 import { NASModel } from 'src/app/shared/models/nas-model';
@@ -32,7 +32,7 @@ export class MediaListComponent implements AfterViewInit {
 
     constructor(
         private mediaListService: MediaListService,
-        private service: ApiService
+        private api: ApiService
     ) {
         this.mediaListService.refreshMediaList.subscribe((data) => {
             this.refreshList(data);
@@ -45,7 +45,7 @@ export class MediaListComponent implements AfterViewInit {
 
     public refreshList(data) {
         const callList = this.type.split(',').map((type) => {
-            return this.service[type + 'Service'].getItemList(data);
+            return this.api[type].getItemList(data);
         });
 
         forkJoin(callList).subscribe((d: DataResult<NASModel>[]) => {

@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { UserModel } from 'src/app/shared/models/user-model';
 import { AppService } from 'src/app/shared/services/app.service';
-import { ApiService } from 'src/app/shared/services/api.service/api.service';
+import { ApiService } from 'src/app/shared/services/api.service';
 import { BaseComponent } from 'src/app/shared/components/base/base.component';
 
 @Component({
@@ -36,7 +36,7 @@ export class UserProfileComponent extends BaseComponent {
     }
 
     public submit() {
-        this.api.userService
+        this.api.user
             .updateItem({
                 user: this.user,
                 password: this.newPassword,

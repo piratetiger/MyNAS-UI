@@ -1,4 +1,4 @@
-<div class="app-files">
+<div class="app-files h-full flex flex-column">
     <div class="content-toolbar">
         <p-toolbar>
             <div class="p-toolbar-group-left">
@@ -42,7 +42,7 @@
         </p-fieldset>
     </div>
 
-    <div class="content-view">
+    <div class="content-view flex-grow-1 overflow-y-auto">
         <p-dataView #dataView [value]="fileList">
             <ng-template pTemplate="header">
                 <div class="grid">
@@ -54,7 +54,7 @@
                         </ng-container>
                     </div>
                     <div class="col-3">
-                        <div class="f-r">
+                        <div class="float-right">
                             <p-dataViewLayoutOptions></p-dataViewLayoutOptions>
                         </div>
                     </div>
@@ -79,7 +79,7 @@
                 <div class="col-1">{{file.isPublic}}</div>
             </ng-template>
             <ng-template let-file pTemplate="gridItem">
-                <div class="col-12 p-md-3 p-sm-6 grid-item">
+                <div class="col-12 md:col-3 grid-item">
                     <div class="grid-item-icon">
                         <span>
                             <i [ngClass]="{'fas fa-folder': file.isFolder,'far fa-file-alt': !file.isFolder}"></i>

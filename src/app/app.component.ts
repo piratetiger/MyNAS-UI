@@ -21,11 +21,13 @@ export class AppComponent extends BaseComponent {
         super();
         this.subscription.add(
             this.service.showMessage$.subscribe((msg: MessageModel) => {
-                this.messageService.add({
-                    severity: MessageType[msg.type].toLowerCase(),
-                    summary: msg.title,
-                    detail: msg.message,
-                });
+                if (msg?.type) {
+                    this.messageService.add({
+                        severity: MessageType[msg.type].toLowerCase(),
+                        summary: msg.title,
+                        detail: msg.message,
+                    });
+                }
             })
         );
         this.subscription.add(

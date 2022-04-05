@@ -5,4 +5,4 @@ import { UserRolePipe } from './user-role/user-role.pipe';
     declarations: [UserRolePipe],
     exports: [UserRolePipe],
 })
-export class AppPipesModule {}
+export class SharedPipesModule {}

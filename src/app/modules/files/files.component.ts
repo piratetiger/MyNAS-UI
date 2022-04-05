@@ -1,5 +1,5 @@
 import { OnInit, Component } from '@angular/core';
-import { ApiService } from 'src/app/shared/services/api.service/api.service';
+import { ApiService } from 'src/app/shared/services/api.service';
 import { AppService } from 'src/app/shared/services/app.service';
 import { ConfirmationService } from 'primeng/api';
 import { FileModel } from 'src/app/shared/models/file-model';
@@ -64,7 +64,7 @@ export class FilesComponent extends BaseComponent implements OnInit {
                 }
                 formData.set('isPublic', this.isPublic.toString());
                 formData.set('cate', this._cate);
-                this.api.fileService.uploadItem(formData).subscribe((d) => {
+                this.api.file.uploadItem(formData).subscribe((d) => {
                     this.uploadFileList = [];
                     if (d.data) {
                         this.refreshFiles();
@@ -83,7 +83,7 @@ export class FilesComponent extends BaseComponent implements OnInit {
                     cate: this._cate,
                     isPublic: this.isPublic,
                 };
-                this.api.fileService.addItem(request).subscribe((d) => {
+                this.api.file.addItem(request).subscribe((d) => {
                     this.refreshFiles();
                 });
             },
@@ -119,7 +119,7 @@ export class FilesComponent extends BaseComponent implements OnInit {
     }
 
     public refreshFiles() {
-        this.api.fileService
+        this.api.file
             .getItemList({
                 cate: this._cate,
                 owner: this.selectedOwners,
