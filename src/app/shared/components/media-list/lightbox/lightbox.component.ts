@@ -15,6 +15,7 @@ import { DetailViewerComponent } from './detail-viewer/detail-viewer.component';
 })
 export class LightboxComponent extends BaseComponent {
     @Input() items: NASModel[] = [];
+    @Input() displayThumb: boolean = true;
 
     public viewMode: boolean;
     public userName: string;

@@ -1,5 +1,9 @@
-<app-header *ngIf="showHeader"></app-header>
-<app-footer *ngIf="showFooter"></app-footer>
-<router-outlet #content></router-outlet>
+<div class="flex flex-column h-screen">
+    <app-header *ngIf="showHeader"></app-header>
+    <div class="flex-grow-1 relative overflow-y-auto">
+        <router-outlet></router-outlet>
+    </div>
+    <app-footer *ngIf="showFooter"></app-footer>
+</div>
 <p-toast position="bottom-right"></p-toast>
 <busy-indicator [isBusy]="isBusy"></busy-indicator>

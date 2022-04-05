@@ -28,7 +28,7 @@ export class MessageInterceptor implements HttpInterceptor {
                         const message = new MessageModel();
                         message.type = MessageType[body.messageType];
                         message.message = body.message;
-                        this.appService.messages.emit(message);
+                        this.appService.showMessage(message);
                     }
                 }
             })

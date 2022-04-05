@@ -21,7 +21,6 @@ import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { MultiSelectModule } from 'primeng/multiselect';
 import { TableModule } from 'primeng/table';
 import { DataViewModule } from 'primeng/dataview';
-import { DeferModule } from 'primeng/defer';
 
 import { BusyIndicatorComponent } from './busy-indicator/busy-indicator.component';
 import {
@@ -70,7 +69,6 @@ import { CommonModule } from '@angular/common';
         MultiSelectModule,
         TableModule,
         DataViewModule,
-        DeferModule,
 
         SharedDirectivesModule,
     ],
@@ -99,7 +97,6 @@ import { CommonModule } from '@angular/common';
         MultiSelectModule,
         TableModule,
         DataViewModule,
-        DeferModule,
 
         SharedDirectivesModule,
     ],

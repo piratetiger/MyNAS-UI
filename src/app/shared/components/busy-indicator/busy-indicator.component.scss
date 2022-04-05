@@ -1,22 +1,5 @@
 p-progressSpinner {
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  margin: auto;
   height: 50px;
   width: 50px;
 }
 
-@keyframes p-progress-spinner-color {
-
-  100%,
-  0%,
-  40%,
-  66%,
-  80%,
-  90% {
-    stroke: #0057e7;
-  }
-}

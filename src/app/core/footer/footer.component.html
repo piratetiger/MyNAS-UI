@@ -1,26 +1,31 @@
-<div class="app-footer grid">
-    <div class="col app-footer-item">
-        <a routerLink="/images">
-            <span><i class="far fa-images app-footer-item-icon"></i></span><br />
-            <span class="app-footer-item-name">Images</span>
-        </a>
-    </div>
-    <div class="col app-footer-item">
-        <a routerLink="/videos">
-            <span><i class="fas fa-video app-footer-item-icon"></i></span><br />
-            <span class="app-footer-item-name">Videos</span>
-        </a>
-    </div>
-    <div class="col app-footer-item">
-        <a routerLink="/files">
-            <span><i class="far fa-file-alt app-footer-item-icon"></i></span><br />
-            <span class="app-footer-item-name">Files</span>
-        </a>
-    </div>
-    <div class="col app-footer-item">
-        <a routerLink="/system">
-            <span><i class="fas fa-cog app-footer-item-icon"></i></span><br />
-            <span class="app-footer-item-name">System</span>
-        </a>
+<div
+    class="app-footer flex flex-column justify-content-center bg-gray-100 border-top-1 border-gray-200"
+    style="height: 54px"
+>
+    <div class="app-footer-content grid grid-nogutter">
+        <div class="col text-center">
+            <a routerLink="/images">
+                <div class="text-2xl"><i class="far fa-images"></i></div>
+                <span>Images</span>
+            </a>
+        </div>
+        <div class="col text-center">
+            <a routerLink="/videos">
+                <div class="text-2xl"><i class="fas fa-video"></i></div>
+                <span>Videos</span>
+            </a>
+        </div>
+        <div class="col text-center">
+            <a routerLink="/files">
+                <div class="text-2xl"><i class="far fa-file-alt"></i></div>
+                <span>Files</span>
+            </a>
+        </div>
+        <div class="col text-center">
+            <a routerLink="/system">
+                <div class="text-2xl"><i class="fas fa-cog"></i></div>
+                <span>System</span>
+            </a>
+        </div>
     </div>
 </div>

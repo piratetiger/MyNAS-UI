@@ -1,16 +1,39 @@
 <div class="lightbox">
-    <div class="lightbox-item" *ngFor="let item of items" (click)="itemClick(item)">
-        <div pDefer>
-            <ng-template>
-                <img class="lightbox-image" [src]="getImageUrl(item)" />
-                <div *ngIf="!viewMode" class="lightbox-image-state">
-                    <i [style.color]="selectedItems.indexOf(item)>-1?'green':'gray'" class="fas fa-check-circle"></i>
-                </div>
-                <div class="lightbox-state">
-                    <i *ngIf="item.owner===userName" title="owner" class="lightbox-image-owner fas fa-user"></i>
-                    <i *ngIf="!item.isPublic" title="private" class="lightbox-image-private fas fa-key"></i>
-                </div>
-            </ng-template>
+    <div
+        class="lightbox-item p-1 relative inline-block cursor-pointer"
+        *ngFor="let item of items"
+        (click)="itemClick(item)"
+    >
+        <img
+            *ngIf="displayThumb"
+            class="h-full w-full"
+            [src]="getImageUrl(item)"
+        />
+        <div
+            *ngIf="!displayThumb"
+            class="h-full w-full flex flex-column justify-content-center text-center border-3 border-dashed"
+        >
+            <i class="fas fa-photo-video text-4xl"></i>
+        </div>
+        <div *ngIf="!viewMode" class="lightbox-image-state absolute text-3xl">
+            <i
+                [style.color]="
+                    selectedItems.indexOf(item) > -1 ? 'green' : 'gray'
+                "
+                class="fas fa-check-circle"
+            ></i>
+        </div>
+        <div class="lightbox-state absolute text-lg">
+            <i
+                *ngIf="item.owner === userName"
+                title="owner"
+                class="lightbox-image-owner pr-2 fas fa-user"
+            ></i>
+            <i
+                *ngIf="!item.isPublic"
+                title="private"
+                class="lightbox-image-private pr-2 fas fa-key"
+            ></i>
         </div>
     </div>
 </div>
