@@ -1,18 +1,31 @@
-import { Component, Input } from '@angular/core';
+import {
+    AfterViewInit,
+    Component,
+    ElementRef,
+    HostListener,
+    Input,
+    QueryList,
+    ViewChild,
+    ViewChildren,
+} from '@angular/core';
 import * as dayjs from 'dayjs';
 import { ApiService } from 'src/app/shared/services/api.service/api.service';
 import { MediaListService } from '../media-list-services/media-list.service';
-import { groupBy } from 'lodash-es';
+import { groupBy, take } from 'lodash-es';
 import { NASModel } from 'src/app/shared/models/nas-model';
 import { forkJoin } from 'rxjs';
 import { DataResult } from 'src/app/shared/models/data-result';
+import { AccordionTab } from 'primeng/accordion';
 
 @Component({
     selector: 'media-list',
     templateUrl: './media-list.component.html',
     styleUrls: ['./media-list.component.scss'],
 })
-export class MediaListComponent {
+export class MediaListComponent implements AfterViewInit {
+    @ViewChild('mediaContent') mediaContent: ElementRef;
+    @ViewChildren(AccordionTab, { read: ElementRef })
+    tabs: QueryList<ElementRef>;
     @Input() type: string = 'video,image';
 
     public itemGroup: any[];
@@ -24,6 +37,10 @@ export class MediaListComponent {
         this.mediaListService.refreshMediaList.subscribe((data) => {
             this.refreshList(data);
         });
+    }
+
+    ngAfterViewInit(): void {
+        this.updateListDisplay();
     }
 
     public refreshList(data) {
@@ -46,6 +63,29 @@ export class MediaListComponent {
                     });
                 }
             }
+
+            setTimeout(() => {
+                this.updateListDisplay();
+            });
         });
+    }
+
+    @HostListener('scroll', ['$event'])
+    public onMediaListScroll(event) {
+        this.updateListDisplay();
+    }
+
+    private updateListDisplay() {
+        const contentElem = this.mediaContent.nativeElement;
+        const displayTop =
+            contentElem.offsetTop +
+            contentElem.offsetHeight +
+            contentElem.scrollTop;
+
+        const displaylength = this.tabs.filter(
+            (t) => t.nativeElement.offsetTop <= displayTop
+        ).length;
+
+        take(this.itemGroup, displaylength).forEach((i) => (i.display = true));
     }
 }

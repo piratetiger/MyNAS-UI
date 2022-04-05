@@ -2,33 +2,16 @@
   .lightbox-item {
     height: 155px;
     width: 130px;
-    padding: 2px;
-    display: inline-block;
-    cursor: pointer;
-    position: relative;
-
-    .lightbox-image {
-      height: 100%;
-      width: 100%;
-    }
 
     .lightbox-state {
-      position: absolute;
-      bottom: 2px;
-      right: 2px;
-      font-size: 16px;
+      bottom: 8px;
+      right: 3px;
       text-shadow: 2px 2px #666;
-
-      i {
-        padding-right: 2px;
-      }
     }
 
     .lightbox-image-state {
-      position: absolute;
-      top: 2px;
-      right: 2px;
-      font-size: 24px;
+      top: 4px;
+      right: 8px;
     }
 
     .lightbox-image-private {

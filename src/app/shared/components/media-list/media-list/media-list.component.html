@@ -1,8 +1,16 @@
-<div class="media-list">
+<div
+    class="media-list h-full overflow-y-auto"
+    (scroll)="onMediaListScroll($event)"
+    #mediaContent
+>
     <p-accordion [multiple]="true">
         <ng-container *ngFor="let group of itemGroup">
             <p-accordionTab [header]="group.date" [selected]="true">
-                <lightbox #lightbox [items]="group.items"></lightbox>
+                <lightbox
+                    #lightbox
+                    [items]="group.items"
+                    [displayThumb]="group.display"
+                ></lightbox>
             </p-accordionTab>
         </ng-container>
     </p-accordion>
