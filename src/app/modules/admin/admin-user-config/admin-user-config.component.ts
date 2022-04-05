@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { UserModel } from 'src/app/shared/models/user-model';
-import { AdminApiService } from 'src/app/shared/services/admin-api.service/admin-api.service';
 import { DialogService } from 'primeng/dynamicdialog';
+import { AdminApiService } from '../services/admin-api.service';
 import { ConfirmationService } from 'primeng/api';
 import { AdminAddUserComponent } from './admin-add-user/admin-add-user.component';
 
@@ -15,7 +15,7 @@ export class AdminUserConfigComponent implements OnInit {
     public clonedUsers: { [s: string]: UserModel } = {};
 
     constructor(
-        private service: AdminApiService,
+        private adminApi: AdminApiService,
         private dialogService: DialogService,
         private confirmationService: ConfirmationService
     ) {}
@@ -25,7 +25,7 @@ export class AdminUserConfigComponent implements OnInit {
     }
 
     public refreshUsers() {
-        this.service.getUserList().subscribe((d) => {
+        this.adminApi.getUserList().subscribe((d) => {
             this.users = [];
             if (d.data.length) {
                 this.users = d.data;
@@ -50,7 +50,7 @@ export class AdminUserConfigComponent implements OnInit {
     }
 
     public rowEditSave(user: UserModel) {
-        this.service
+        this.adminApi
             .updateUser({
                 user: user,
                 password: user.password,
@@ -67,7 +67,7 @@ export class AdminUserConfigComponent implements OnInit {
         this.confirmationService.confirm({
             message: 'Are you sure that you want to delete this user?',
             accept: () => {
-                this.service
+                this.adminApi
                     .deleteUser({
                         user: user,
                     })

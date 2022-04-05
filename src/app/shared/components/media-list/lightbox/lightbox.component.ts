@@ -1,7 +1,7 @@
 import { Component, ViewEncapsulation, Input } from '@angular/core';
 import { DialogService } from 'primeng/dynamicdialog';
 import { NASModel } from 'src/app/shared/models/nas-model';
-import { ApiService } from 'src/app/shared/services/api.service/api.service';
+import { ApiService } from 'src/app/shared/services/api.service';
 import { AppService } from 'src/app/shared/services/app.service';
 import { BaseComponent } from '../../base/base.component';
 import { MediaListService } from '../media-list-services/media-list.service';

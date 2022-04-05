@@ -1,29 +1,31 @@
 import { Injectable } from '@angular/core';
 
-import serviceList from './api.service-list';
+import serviceList, { IServiceList } from './api.service-list';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
-import { DataResult } from '../../models/data-result';
-import { ImageModel } from '../../models/image-model';
-import { VideoModel } from '../../models/video-model';
-import { UserModel } from '../../models/user-model';
-import { FileModel } from '../../models/file-model';
+import { DataResult } from '../models/data-result';
+import { ImageModel } from '../models/image-model';
+import { VideoModel } from '../models/video-model';
+import { UserModel } from '../models/user-model';
+import { FileModel } from '../models/file-model';
 
-@Injectable()
+@Injectable({
+    providedIn: 'root',
+})
 export class ApiService {
     public serviceUrls = serviceList;
 
-    public imageService: NASApiService<ImageModel>;
-    public videoService: NASApiService<VideoModel>;
-    public fileService: NASApiService<FileModel>;
-    public userService: NASApiService<UserModel>;
+    public image: NASApiService<ImageModel>;
+    public video: NASApiService<VideoModel>;
+    public file: NASApiService<FileModel>;
+    public user: NASApiService<UserModel>;
 
     constructor(private http: HttpClient) {
-        this.imageService = new NASApiService<ImageModel>(http, 'image');
-        this.videoService = new NASApiService<VideoModel>(http, 'video');
-        this.fileService = new NASApiService<FileModel>(http, 'file');
-        this.userService = new NASApiService<UserModel>(http, 'user');
+        this.image = new NASApiService<ImageModel>(http, serviceList.image);
+        this.video = new NASApiService<VideoModel>(http, serviceList.video);
+        this.file = new NASApiService<FileModel>(http, serviceList.file);
+        this.user = new NASApiService<UserModel>(http, serviceList.user);
     }
 
     public login(body: any): Observable<DataResult<UserModel>> {
@@ -35,39 +37,39 @@ export class ApiService {
 }
 
 class NASApiService<T> {
-    constructor(private http: HttpClient, private type: string) {}
+    constructor(private http: HttpClient, private serviceList: IServiceList) {}
 
     public uploadItem(body: any): Observable<DataResult<boolean>> {
         return this.http.post<DataResult<boolean>>(
-            serviceList[this.type].uploadItem,
+            this.serviceList.uploadItem,
             body
         );
     }
 
     public getItemList(body: any): Observable<DataResult<T>> {
         return this.http.post<DataResult<T>>(
-            serviceList[this.type].getItemList,
+            this.serviceList.getItemList,
             body
         );
     }
 
     public deleteItem(body: any): Observable<DataResult<boolean>> {
         return this.http.post<DataResult<boolean>>(
-            serviceList[this.type].deleteItem,
+            this.serviceList.deleteItem,
             body
         );
     }
 
     public updateItem(body: any): Observable<DataResult<boolean>> {
         return this.http.post<DataResult<boolean>>(
-            serviceList[this.type].updateItem,
+            this.serviceList.updateItem,
             body
         );
     }
 
     public addItem(body: any): Observable<DataResult<boolean>> {
         return this.http.post<DataResult<boolean>>(
-            serviceList[this.type].addItem,
+            this.serviceList.addItem,
             body
         );
     }

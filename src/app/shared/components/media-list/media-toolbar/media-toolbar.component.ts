@@ -5,7 +5,7 @@ import { groupBy } from 'lodash-es';
 import { ConfirmationService } from 'primeng/api';
 import { forkJoin } from 'rxjs';
 import { NASModel } from 'src/app/shared/models/nas-model';
-import { ApiService } from 'src/app/shared/services/api.service/api.service';
+import { ApiService } from 'src/app/shared/services/api.service';
 import { MediaListService } from '../media-list-services/media-list.service';
 dayjs.extend(utc);
 
@@ -59,7 +59,7 @@ export class MediaToolbarComponent implements OnInit, OnDestroy {
 
     constructor(
         private mediaListService: MediaListService,
-        private service: ApiService,
+        private api: ApiService,
         private confirmationService: ConfirmationService
     ) {
         this.startDate = dayjs().subtract(3, 'months').toDate();
@@ -71,7 +71,7 @@ export class MediaToolbarComponent implements OnInit, OnDestroy {
     }
 
     ngOnInit(): void {
-        this.service.userService.getItemList({}).subscribe((d) => {
+        this.api.user.getItemList({}).subscribe((d) => {
             this.owners = d.data.map((u) => {
                 return {
                     label: u.nickName ? u.nickName : u.userName,
@@ -97,7 +97,7 @@ export class MediaToolbarComponent implements OnInit, OnDestroy {
 
                 const groups = groupBy(items, (i: NASModel) => i.type);
                 const callList = Object.keys(groups).map((key) => {
-                    return this.service[key + 'Service'].deleteItem({
+                    return this.api[key].deleteItem({
                         names: groups[key].map((i: NASModel) => i.fileName),
                     });
                 });
@@ -128,7 +128,7 @@ export class MediaToolbarComponent implements OnInit, OnDestroy {
                         dayjs(this.mediaDate).format('YYYYMMDD')
                     );
                     formData.set('isPublic', this.isPublic.toString());
-                    return this.service[key + 'Service'].uploadItem(formData);
+                    return this.api[key].uploadItem(formData);
                 });
 
                 forkJoin(callList).subscribe((d) => {
@@ -152,7 +152,7 @@ export class MediaToolbarComponent implements OnInit, OnDestroy {
 
         const groups = groupBy(items, (i: NASModel) => i.type);
         const callList = Object.keys(groups).map((key) => {
-            return this.service[key + 'Service'].updateItem({
+            return this.api[key].updateItem({
                 names: groups[key].map((i: NASModel) => i.fileName),
                 newModel: newModel,
             });

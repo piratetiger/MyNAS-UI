@@ -4,9 +4,9 @@ import serviceList from './admin-api.service-list';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
-import { UserModel } from '../../models/user-model';
-import { DataResult } from '../../models/data-result';
-import { LogModel } from '../../models/log-model';
+import { UserModel } from 'src/app/shared/models/user-model';
+import { DataResult } from 'src/app/shared/models/data-result';
+import { LogModel } from 'src/app/shared/models/log-model';
 
 @Injectable()
 export class AdminApiService {

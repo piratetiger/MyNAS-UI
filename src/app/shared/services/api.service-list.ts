@@ -28,3 +28,12 @@ export default {
         getItemList: '/Api/User/list',
     },
 };
+
+export class IServiceList {
+    uploadItem?: string;
+    getItemList?: string;
+    getItem?: string;
+    deleteItem?: string;
+    updateItem?: string;
+    addItem?: string;
+}
