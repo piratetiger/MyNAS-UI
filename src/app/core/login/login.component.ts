@@ -24,11 +24,11 @@ export class LoginComponent extends BaseComponent implements OnDestroy {
         private router: Router
     ) {
         super();
-        this.service.showFooter.emit(false);
+        this.service.showFooter(false);
     }
 
     ngOnDestroy() {
-        this.service.showFooter.emit(true);
+        this.service.showFooter(true);
         super.ngOnDestroy();
     }
 

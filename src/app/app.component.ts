@@ -20,7 +20,7 @@ export class AppComponent extends BaseComponent {
     ) {
         super();
         this.subscription.add(
-            this.service.messages.subscribe((msg: MessageModel) => {
+            this.service.showMessage$.subscribe((msg: MessageModel) => {
                 this.messageService.add({
                     severity: MessageType[msg.type].toLowerCase(),
                     summary: msg.title,
@@ -34,12 +34,12 @@ export class AppComponent extends BaseComponent {
             })
         );
         this.subscription.add(
-            this.service.showHeader.subscribe((value: boolean) => {
+            this.service.showHeader$.subscribe((value: boolean) => {
                 this.showHeader = value;
             })
         );
         this.subscription.add(
-            this.service.showFooter.subscribe((value: boolean) => {
+            this.service.showFooter$.subscribe((value: boolean) => {
                 this.showFooter = value;
             })
         );
